@@ -10,9 +10,12 @@
 		font-size: 2.5rem;
 	}
 	.about .about-content .about-img {
-		justify-content: inherit;
+		-webkit-box-pack: inherit;
+		    -ms-flex-pack: inherit;
+		        justify-content: inherit;
 	}
 	.wrapper {
+		-ms-grid-columns: (1fr)[2];
 		grid-template-columns: repeat(2, 1fr);
 	}
 	header.header-section .hero-img img {
@@ -50,6 +53,8 @@
 		height: 0;
 		min-height: 0;
 		overflow: hidden;
+		-webkit-transition: all 0.3s ease;
+		-o-transition: all 0.3s ease;
 		transition: all 0.3s ease;
 
 	}
@@ -77,6 +82,7 @@
 @media (max-width: 600px) {
 
 	.wrapper {
+		-ms-grid-columns: (1fr)[1];
 		grid-template-columns: repeat(1, 1fr);
 	}
 	.flex {
@@ -130,7 +136,9 @@
 		padding: .5rem;
 	}
 	footer.footer .social-section ul {
-		justify-content: center;
+		-webkit-box-pack: center;
+		    -ms-flex-pack: center;
+		        justify-content: center;
 		margin-top: 2rem;
 	}
 	footer.footer {
