@@ -441,3 +441,7 @@ footer.footer .social-section ul li a {
 footer.footer .social-section ul li a:hover {
 	color: var(--main);
 }
+
+body {
+	display:none;
+}
