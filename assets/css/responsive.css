@@ -1,0 +1,124 @@
+@media (max-width: 1399.98px) { 
+    .about .about-info ul li span:first-child {
+        display: block;
+    }
+    .about .about-info ul li span:first-child::after {
+        content: ' ';
+    }
+    .about .about-info ul li {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 1199.98px) {
+    .header .navbar-section {
+        z-index: 999;
+    }
+    .header .navbar-section .menu ul {
+        display: block;
+    }
+    .header .navbar-section .logo {
+        display: none;
+    }
+    .header .navbar-section .menu ul li {
+        margin: 0;
+        margin-bottom: 30px;
+    }
+    .header .navbar-section .menu ul li a {
+        color: var(--black);
+    }
+    .header .navbar-section .mobile-logo {
+        display: block;
+    }
+    .header .navbar-section .humburger {
+        display: block;
+    }
+    .header .navbar-section .for-mobile {
+        background: var(--white);
+        text-align: center;
+        overflow: hidden;
+        height: 0;
+        transition: var(--sec3);
+    }
+    .header .navbar-section .for-mobile.show {
+       height: 350px;
+       visibility: visible;
+       padding: 20px 0;
+    }
+    .about .about-info ul li {
+        margin-bottom: 1.8rem;
+    }
+    .about .about-info ul li span:first-child::after {
+        content: ' : ';
+    }
+    .about .about-info ul li span:first-child {
+        display: inline-block;
+    }
+    .about-info {
+        padding: 50px 0;
+    }
+    .header {
+        min-height: inherit;
+    }
+    .header .hero-section {
+        height: inherit;
+        padding: 180px 0;
+    }
+    .header .hero-section h4 {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .owl-carousel .owl-nav {
+        left: 0;
+        transform: translate(0, -150%);
+    }
+    .owl-carousel .owl-nav button.owl-next, .owl-carousel .owl-nav button.owl-prev {
+        width: 40px;
+        height: 40px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .header .hero-section {
+        text-align: center;
+    }
+    .header .hero-section h2 {
+        font-size: 50px;
+    }
+    .about .about-info ul li span:first-child::after {
+        content: ' ';
+    }
+    .about .about-info ul li span:first-child {
+        display: block;
+    }
+}
+
+
+
+
+@media (max-width: 575.98px) { 
+    .container {
+        width: 90%;
+    }
+    .btn-sec a:first-child {
+        margin-bottom: 20px;
+    }
+    .portfolio .portfolio-item .portfolio-content {
+        text-align: center;
+    }
+    .portfolio .portfolio-content .portfolio-action {
+        display: inherit;
+    }
+    .portfolio .portfolio-category {
+        margin-bottom: 20px;
+    }
+    .about .skills-sec .skills-title {
+        text-align: center;
+    }
+}
+
+
+

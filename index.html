@@ -1,309 +1,896 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Awal Bashar | Personal Portfolio</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="shortcut icon" href="./images/favicon.svg" type="image/x-icon">
+    <!-- title here -->
+    <title>Awal Bashar | Official Portfolio</title>
 
-	<link rel="stylesheet" href="./css/all.min.css">
-	<link rel="stylesheet" href="./css/animate.css">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
 
-	<link rel="stylesheet" href="./css/style.css">
-	<link rel="stylesheet" href="./css/responsive.css">
+    <!-- fontawesome css  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- plugins css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/headline.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+
+    <!-- main css file -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- responsive css  -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
 </head>
 <body>
-	<!-- Header Section -->
-	<header class="header-section fix" data-scroll-index="1">
-		<nav class="navbar">
-			<!-- Responsive Collapse Button -->
-			<button><i class="fas fa-bars"></i></button>
-			<div class="container  flex items-center justify-between">
-				<div class="header-logo">
-					<a href="index.html"><img src="./images/logo/logo.png" alt="#"></a>
-				</div>
-				<div class="header-menu">
-					<ul>
-						<li><a class="active" href="javascript:void(0)" data-scroll-nav="1">home</a></li>
-						<li><a href="javascript:void(0)" data-scroll-nav="2">about</a></li>
-						<li><a href="javascript:void(0)" data-scroll-nav="3">services</a></li>
-						<li><a href="javascript:void(0)" data-scroll-nav="4">portfolio</a></li>
-						<li><a href="javascript:void(0)" data-scroll-nav="5">blog</a></li>
-						<li><a href="javascript:void(0)" data-scroll-nav="6">contact</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-		<div class="container">
-			<div class="hero-section flex items-center justify-between">
-				<div class="hero-img flex1 flex justify-center wow bounceInLeft" data-wow-duration="1s" data-wow-delay="0.2s">
-					<img src="./images/header/man.png" alt="#">
-				</div>
-				<div class="hero-content flex1 wow fadeIn" data-wow-duration="1.5s"  data-wow-delay="0.8s">
-					<h2>Hi!</h2>
-					<h3>I'm <span>Awal Bashar</span></h3>
-					<p>I'm a Web Designer, Developer & Freelancer</p>
-					<button class="btn btn-primary"><a href="cv.txt" target="_blank">DownLoad CV</a></button>
-				</div>
-			</div>
-		</div>
-	</header>
 
-	<!-- About Section -->
-	<section class="about fix" data-scroll-index="2">
-		<div class="container">
-			<div class="title">
-				<h2><span>About</span> Me</h2>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-			</div>
+    <!-- header section start -->
+    <header class="header" data-scroll-index="0" data-parallax="scroll" data-image-src="./assets/images/header/header-bg.jpg">
 
-			<div class="about-content flex justify-between">
-				<div class="about-img flex1 flex justify-center">
-					<img src="./images/about/man.jpg" alt="#">
-				</div>
-				<div class="about-skill flex1">
-					<div class="skills">
-						<div class="skill-item">html</div>
-						<div class="skill-progress">
-							<div class="progres" data-value="50%"></div>
-						</div>
-					</div>
-					<div class="skills">
-						<div class="skill-item">css</div>
-						<div class="skill-progress">
-							<div class="progres" data-value="30%"></div>
-						</div>
-					</div>
-					<div class="skills">
-						<div class="skill-item">Js</div>
-						<div class="skill-progress">
-							<div class="progres" data-value="10%"></div>
-						</div>
-					</div>
-					<div class="skills">
-						<div class="skill-item">bootstrap</div>
-						<div class="skill-progress">
-							<div class="progres" data-value="60%"></div>
-						</div>
-					</div>
-					<div class="skills">
-						<div class="skill-item">php</div>
-						<div class="skill-progress">
-							<div class="progres" data-value="70%"></div>
-						</div>
-					</div>
+        <!-- navbar section start -->
+        <nav class="navbar-section" id="sticky">
+            <div class="container position-relative">
 
-					<div class="skills">
-						<div class="skill-item">mysql</div>
-						<div class="skill-progress">
-							<div class="progres" data-value="45%"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+                <!-- for mobile section start -->
 
-	<!-- Services Section -->
-	<section class="services fix" data-scroll-index="3">
-		<div class="container">
-			<div class="title">
-				<h2>My <span>Services</span></h2>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-			</div>
+                <!-- mobile logo  -->
+                <div class="mobile-logo">
+                    <a href="index.html">
+                        Awal <span>Bashar</span>
+                    </a>
+                </div>
+                
+                <!-- humburger icon  -->
+                <div class="humburger" id="menu-click">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <!-- for mobile section  end -->
 
-			<div class="wrapper">
-				<div class="wrapper-column wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="0.5s">
-					<div class="column-icon"><i class="fab fa-accessible-icon"></i></div>
-					<h3>Web Design</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia quibusdam minus cumque optio error reprehenderit quos ea eligendi</p>
-				</div>
-				<div class="wrapper-column wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="0.5s">
-					<div class="column-icon"><i class="fab fa-accessible-icon"></i></div>
-					<h3>Web Design</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia quibusdam minus cumque optio error reprehenderit quos ea eligendi</p>
-				</div>
-				<div class="wrapper-column wow fadeInUp" data-wow-delay="0.4s" data-wow-duration="0.5s">
-					<div class="column-icon"><i class="fab fa-accessible-icon"></i></div>
-					<h3>Web Design</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia quibusdam minus cumque optio error reprehenderit quos ea eligendi</p>
-				</div>
-				<div class="wrapper-column wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="0.5s">
-					<div class="column-icon"><i class="fab fa-accessible-icon"></i></div>
-					<h3>Web Design</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia quibusdam minus cumque optio error reprehenderit quos ea eligendi</p>
-				</div>
-				<div class="wrapper-column wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="0.5s">
-					<div class="column-icon"><i class="fab fa-accessible-icon"></i></div>
-					<h3>Web Design</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia quibusdam minus cumque optio error reprehenderit quos ea eligendi</p>
-				</div>
-				<div class="wrapper-column wow fadeInUp" data-wow-delay="0.4s" data-wow-duration="0.5s">
-					<div class="column-icon"><i class="fab fa-accessible-icon"></i></div>
-					<h3>Web Design</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia quibusdam minus cumque optio error reprehenderit quos ea eligendi</p>
-				</div>
-			</div>
-		</div>
-	</section>
+                <!-- header menu start  -->
+                <div class="row for-mobile" id="for-mobile">
+                    <div class="d-xl-flex justify-content-center align-items-center">
+                        <!-- menu item first  -->
+                        <div class="menu">
+                            <ul>
+                                <li class="active" data-scroll-nav="0"><a href="#">home</a></li>
+                                <li data-scroll-nav="1"><a href="#">about</a></li>
+                                <li data-scroll-nav="2"><a href="#">services</a></li>
+                            </ul>
+                        </div>
+                        <!-- logo all  -->
+                        <div class="logo mx-5">
+                            <a href="index.html">
+                                Awal <span>Bashar</span>
+                            </a>
+                        </div>
+                        <!-- menu item second -->
+                        <div class="menu">
+                            <ul>
+                                <li data-scroll-nav="3"><a href="#">portfolio</a></li>
+                                <li data-scroll-nav="4"><a href="#">blogs</a></li>
+                                <li data-scroll-nav="5"><a href="#">contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- header menu end  -->
 
-	<!-- Portfolio Section -->
-	<section class="portfolio fix" data-scroll-index="4">
-		<div class="container">
-			<div class="title">
-				<h2>My <span>Portfolio</span></h2>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-			</div>
+            </div>
+        </nav>
+        <!-- navbar section end -->
 
-			<div class="category-btn">
-				<ul>
-					<li data-filter="*" class="active">All</li>
-					<li data-filter=".code,.codee">Code</li>
-					<li data-filter=".design,.designn">Design</li>
-					<li data-filter=".template,.templatee">Template</li>
-				</ul>
-			</div>
-			<div class="wrapper category-item wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.2s">
-				<div class="wrapper-column mix code">
-					<img src="./images/portfolio/design.png" alt="#">
-				</div>
-				<div class="wrapper-column mix template">
-					<img src="./images/portfolio/item2.png" alt="#">
-				</div>
-				<div class="wrapper-column mix design">
-					<img src="./images/portfolio/item3.png" alt="#">
-				</div>
-				<div class="wrapper-column mix codee">
-					<img src="./images/portfolio/design.png" alt="#">
-				</div>
-				<div class="wrapper-column mix templatee">
-					<img src="./images/portfolio/design.png" alt="#">
-				</div>
-				<div class="wrapper-column mix designn">
-					<img src="./images/portfolio/design.png" alt="#">
-				</div>
-			</div>
-		</div>
-	</section>
+        <!-- hero section start -->
+        <div class="container">
+            <div class="row">
+                <div class="hero-section">
+                    <h4>
+                        Hi<span>!</span>
+                    </h4>
+                    <h2>
+                        I'm <span>Awal Bashar</span>
+                    </h2>
+                    <!-- headeline  -->
+                    <h3 class="cd-headline clip">
+                        <span>I'm a</span>
+                        <span class="cd-words-wrapper">
+                            <b class="is-visible">Web Developer</b>
+                            <b>Web Designer</b>
+                            <b>Freelancer</b>
+                            <b>Mentor</b>
+                        </span>
+                    </h3>
+                    <p>Coding is not only my profession, but also my passion</p>
+                    <!-- btn  -->
+                    <div class="btn-sec">
+                        <a href="#" class="btn-1">Download CV</a>
+                        <a href="#" class="btn-2" data-scroll-nav="1">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- hero section end  -->
 
-	<!-- Blog Section -->
-	<section class="blog fix" data-scroll-index="5">
-		<div class="container">
-			<div class="title">
-				<h2>Personal <span>Blogs</span></h2>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-			</div>
+    </header>
+    <!-- header section end -->
+    
+    <!-- about section start  -->
+    <section class="about bg-white" data-scroll-index="1">
 
-			<div class="wrapper">
-				<div class="wrapper-column wow fadeInLeft" data-wow-duration="0.8s">
-					<div class="blog-img">
-						<img src="./images/blog/blog1.png" alt="">
-					</div>
-					<h3><a href="#">Lorem ipsum dolor sit amet </a></h3>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem harum atque deserunt alias, eveniet expedita aperiam doloremque possimus temporibus qui vitae optio nihil voluptate illo id laudantium? Incidunt repellendus, illo.</p>
-					<a href="#">Read More</a>
-				</div>
-				<div class="wrapper-column wow fadeInLeft" data-wow-duration="0.8s">
-					<div class="blog-img">
-						<img src="./images/blog/blog1.png" alt="">
-					</div>
-					<h3><a href="#">Lorem ipsum dolor sit amet </a></h3>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem harum atque deserunt alias, eveniet expedita aperiam doloremque possimus temporibus qui vitae optio nihil voluptate illo id laudantium? Incidunt repellendus, illo.</p>
-					<a href="#">Read More</a>
-				</div>
-				<div class="wrapper-column wow fadeInLeft" data-wow-duration="0.8s">
-					<div class="blog-img">
-						<img src="./images/blog/blog1.png" alt="">
-					</div>
-					<h3><a href="#">Lorem ipsum dolor sit amet </a></h3>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem harum atque deserunt alias, eveniet expedita aperiam doloremque possimus temporibus qui vitae optio nihil voluptate illo id laudantium? Incidunt repellendus, illo.</p>
-					<a href="#">Read More</a>
-				</div>
-				<div class="wrapper-column wow fadeInRight" data-wow-duration="0.8s">
-					<div class="blog-img">
-						<img src="./images/blog/blog1.png" alt="">
-					</div>
-					<h3><a href="#">Lorem ipsum dolor sit amet </a></h3>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem harum atque deserunt alias, eveniet expedita aperiam doloremque possimus temporibus qui vitae optio nihil voluptate illo id laudantium? Incidunt repellendus, illo.</p>
-					<a href="#">Read More</a>
-				</div>
-				<div class="wrapper-column wow fadeInRight" data-wow-duration="0.8s">
-					<div class="blog-img">
-						<img src="./images/blog/blog1.png" alt="">
-					</div>
-					<h3><a href="#">Lorem ipsum dolor sit amet </a></h3>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem harum atque deserunt alias, eveniet expedita aperiam doloremque possimus temporibus qui vitae optio nihil voluptate illo id laudantium? Incidunt repellendus, illo.</p>
-					<a href="#">Read More</a>
-				</div>
-				<div class="wrapper-column wow fadeInRight" data-wow-duration="0.8s">
-					<div class="blog-img">
-						<img src="./images/blog/blog1.png" alt="">
-					</div>
-					<h3><a href="#">Lorem ipsum dolor sit amet </a></h3>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem harum atque deserunt alias, eveniet expedita aperiam doloremque possimus temporibus qui vitae optio nihil voluptate illo id laudantium? Incidunt repellendus, illo.</p>
-					<a href="#">Read More</a>
-				</div>
-			</div>
-		</div>
-	</section>
-	
-	<!-- Contact Section -->
-	<section class="contact fix" data-scroll-index="6">
-		<div class="container">
-			<div class="title">
-				<h2><span>Contact</span> With me</h2>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-			</div>
+        <!-- top section start -->
+        <div class="container padding">
+            <div class="title">
+                <h2>
+                    About <span>ME</span>
+                    <span class="circle"></span>
+                </h2>
+                <p>Here I provide my personal information, skills and many more...</p>
+            </div>
+            <div class="row">
+                <div class="col-xl-6">
+                    <!-- about img  -->
+                    <div class="about-img">
+                        <img src="assets/images/about/about-img.jpg" class="img-fluid" alt="#">
+                    </div>
+                </div>
+                <div class="col-xl-6  d-xl-block d-flex flex-column align-items-center">
+                    <div class="d-flex flex-column justify-content-xl-around h-100">
+                        <!-- about info  -->
+                        <nav class="about-info">
+                            <ul>
+                                <li>
+                                    <span>Name</span>
+                                    <span>Awal Bashar</span>
+                                </li>
+                                <li>
+                                    <span>Date of Birth</span>
+                                    <span>12, March, 2001</span>
+                                </li>
+                                <li>
+                                    <span>Nationality</span>
+                                    <span>Bangladeshi</span>
+                                </li>
+                                <li>
+                                    <span>Current Profession</span>
+                                    <span>Student of CSE, Freelancer & Mentor</span>
+                                </li>
+                                <li>
+                                    <span>Interested In</span>
+                                    <span>Programming, Web Design & Development</span>
+                                </li>
+                                <li>
+                                    <span>Hobby</span>
+                                    <span>Travelling, Sleeping</span>
+                                </li>
+                            </ul>
+                        </nav>
+                        
+                        <!-- btn  -->
+                        <div class="btn-sec">
+                            <a href="#" class="btn-2 btn-4">Download CV</a>
+                            <a href="#" class="btn-3">Hire ME</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- top section end -->
 
-			<div class="wrapper contact-info">
-				<div class="wrapper-column wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.1s">
-					<i class="fab fa-facebook-f"></i>
-					<h4>What's app number</h4>
-					<p>+8801771262094</p>
-				</div>
-				<div class="wrapper-column wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.2s">
-					<i class="fab fa-facebook-f"></i>
-					<h4>What's app number</h4>
-					<p>+8801771262094</p>
-				</div>
-				<div class="wrapper-column wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.3s">
-					<i class="fab fa-facebook-f"></i>
-					<h4>What's app number</h4>
-					<p>+8801771262094</p>
-				</div>
-			</div>
+        <div class="skills-sec py-5">
+            <div class="container-md container-fluid py-5">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="skills-title">
+                            <h3>My Skills and Some FAQ here</h3>
+                        </div>
+                        <!-- accordion -->
+                        <div class="accordion">
 
-			<div class="contact-form-section">
+                            <div class="item active">
+                                <div class="accrodion-title">
+                                    <h6>Identifying Problem Source</h6>
+                                </div>
+                                <div class="accordion-body active">
+                                    <p>Lorem ipsum dolor sit amet, in quodsi vulputate pro. Ubique maluisset vel te, his dico vituperata ut. in quodsi Ubique maluisset vel te, his dico vituperata ut in quodsi Ubique.</p>
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <div class="accrodion-title">
+                                    <h6>Protecting brand integrity</h6>
+                                </div>
+                                <div class="accordion-body">
+                                    <p>Lorem ipsum dolor sit amet, in quodsi vulputate pro. Ubique maluisset vel te, his dico vituperata ut.vituperata ut in quodsi in quodsiUbique maluisset vel te, his dico vituperata ut in quodsiUbique. in quodsi vulputate.</p>
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <div class="accrodion-title">
+                                    <h6>We Are Creative And Professional</h6>
+                                </div>
+                                <div class="accordion-body">
+                                    <p>Lorem ipsum dolor sit amet, in quodsi vulputate pro. Ubique maluisset vel te, his dico vituperata ut. in vituperata ut in quodsi maluisset vel te, his dico vituperata ut in quodsi Ubique. in quodsi vulputate.</p>
+                                </div>
+                            </div> 
+                            <div class="item">
+                                <div class="accrodion-title">
+                                    <h6>We Are Creative And Professional</h6>
+                                </div>
+                                <div class="accordion-body">
+                                    <p>Lorem ipsum dolor sit amet, in quodsi vulputate pro. Ubique maluisset vel te, his dico vituperata ut. in vituperata ut in quodsi maluisset vel te, his dico vituperata ut in quodsi Ubique. in quodsi vulputate.</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <!-- progress bar section  -->
+                    <div class="col-lg-6">
+                        <div class="about-skill">
+                            <div class="skills">
+                                <div class="skill-item">html</div>
+                                <div class="skill-progress">
+                                    <div class="progres" data-value="50%"></div>
+                                </div>
+                            </div>
+                            <div class="skills">
+                                <div class="skill-item">css</div>
+                                <div class="skill-progress">
+                                    <div class="progres" data-value="30%"></div>
+                                </div>
+                            </div>
+                            <div class="skills">
+                                <div class="skill-item">Js</div>
+                                <div class="skill-progress">
+                                    <div class="progres" data-value="10%"></div>
+                                </div>
+                            </div>
+                            <div class="skills">
+                                <div class="skill-item">bootstrap</div>
+                                <div class="skill-progress">
+                                    <div class="progres" data-value="60%"></div>
+                                </div>
+                            </div>
+                            <div class="skills">
+                                <div class="skill-item">php</div>
+                                <div class="skill-progress">
+                                    <div class="progres" data-value="70%"></div>
+                                </div>
+                            </div>
+        
+                            <div class="skills">
+                                <div class="skill-item">mysql</div>
+                                <div class="skill-progress">
+                                    <div class="progres" data-value="45%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+
+    </section>
+    <!-- about section end -->
+
+    <!-- services section start  -->
+    <section class="services" data-scroll-index="2">
+        <div class="bg-white">
+            <div class="container padding">
+                <div class="title">
+                    <h2>
+                        My <span>Services</span>
+                        <span class="circle"></span>
+                    </h2>
+                    <p>Here I provide my personal information, skills and many more...</p>
+                </div>
+                <div class="row">
+                    <!-- item-1  -->
+                    <div class="col-xl-3 col-md-6">
+                        <div class="services-items">
+                            <span>
+                                <i class="fas fa-desktop"></i>
+                            </span>
+                            <h4>Web Design</h4>
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, totam amet ipsa quisquam facilis</p>
+                        </div>
+                    </div>
+                    <!-- item 2 -->
+                    <div class="col-xl-3 col-md-6">
+                        <div class="services-items">
+                            <span><i class="fas fa-desktop"></i></span>
+                            <h4>Web Design</h4>
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, totam amet ipsa quisquam facilis</p>
+                        </div>
+                    </div>
+                    <!-- item 3 -->
+                    <div class="col-xl-3 col-md-6">
+                        <div class="services-items">
+                            <span><i class="fas fa-desktop"></i></span>
+                            <h4>Web Design</h4>
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, totam amet ipsa quisquam facilis</p>
+                        </div>
+                    </div>
+                    <!-- item 4 -->
+                    <div class="col-xl-3 col-md-6">
+                        <div class="services-items">
+                            <span><i class="fas fa-desktop"></i></span>
+                            <h4>Web Design</h4>
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, totam amet ipsa quisquam facilis</p>
+                        </div>
+                    </div>
+                    
+                    <!-- item 5  -->
+                    <div class="col-xl-3 col-md-6">
+                        <div class="services-items">
+                            <span><i class="fas fa-desktop"></i></span>
+                            <h4>Web Design</h4>
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, totam amet ipsa quisquam facilis</p>
+                        </div>
+                    </div>
+                    <!-- item 6  -->
+                    <div class="col-xl-3 col-md-6">
+                        <div class="services-items">
+                            <span><i class="fas fa-desktop"></i></span>
+                            <h4>Web Design</h4>
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, totam amet ipsa quisquam facilis</p>
+                        </div>
+                    </div>
+                    <!-- item 7  -->
+                    <div class="col-xl-3 col-md-6">
+                        <div class="services-items">
+                            <span><i class="fas fa-desktop"></i></span>
+                            <h4>Web Design</h4>
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, totam amet ipsa quisquam facilis</p>
+                        </div>
+                    </div>
+                    <!-- item 8  -->
+                    <div class="col-xl-3 col-md-6">
+                        <div class="services-items">
+                            <span><i class="fas fa-desktop"></i></span>
+                            <h4>Web Design</h4>
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, totam amet ipsa quisquam facilis</p>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+
+        <div class="cta" data-parallax="scroll" data-image-src="./assets/images/services/services-bg.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="cta-text">
+                        <h2>Don't Think <span>Begin it today</span></h2>
+                        <div class="btn-sec">
+                            <a href="#" class="btn-1">Hire Me</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- services section end  -->
+
+    <!-- portfolio section start  -->
+    <section class="portfolio bg-white padding" data-scroll-index="3">
+        <div class="container">
+            <div class="title">
+                <h2>
+                    Recent <span>Works</span>
+                    <span class="circle"></span>
+                </h2>
+                <p>Here I provide my personal information, skills and many more...</p>
+            </div>
+            <div class="row">
+                <!-- item 1 -->
+                <div class="col-xl-4 col-md-6">
+                    <div class="portfolio-item">
+                       <!-- portfolio img  -->
+                        <div class="portfolio-thumbnail">
+                            <a href="javascript:void(0)">
+                                <img src="./assets/images/portfolio/portfolio-01.jpg" alt="Personal Portfolio Images">
+                            </a>
+                        </div>
+                        <!-- portfolio body  -->
+                        <div class="portfolio-content">
+                            <div class="portfolio-action">
+                                <div class="portfolio-category">
+                                    <span><i class="fas fa-bookmark"></i></span>
+                                    <span>Development</span>
+                                </div>
+                                <!-- portfolio viem -->
+                                <div class="portfolio-show">
+                                    <nav>
+                                        <ul>
+                                            <li>
+                                                <a href="#"><i class="fas fa-search-plus"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="fas fa-link"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="fab fa-blogger-b"></i></a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <h4>Arco Html template</h4>
+                        </div>
+                        
+                    </div>
+                </div>
+                <!-- item 2 -->
+                <div class="col-xl-4 col-md-6">
+                    <div class="portfolio-item">
+                       <!-- portfolio img  -->
+                        <div class="portfolio-thumbnail">
+                            <a href="javascript:void(0)">
+                                <img src="./assets/images/portfolio/portfolio-01.jpg" alt="Personal Portfolio Images">
+                            </a>
+                        </div>
+                        <!-- portfolio body  -->
+                        <div class="portfolio-content">
+                            <div class="portfolio-action">
+                                <div class="portfolio-category">
+                                    <span><i class="fas fa-bookmark"></i></span>
+                                    <span>Development</span>
+                                </div>
+                                <!-- portfolio viem -->
+                                <div class="portfolio-show">
+                                    <nav>
+                                        <ul>
+                                            <li>
+                                                <a href="#"><i class="fas fa-search-plus"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="fas fa-link"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="fab fa-blogger-b"></i></a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <h4>Arco Html template</h4>
+                        </div>
+                        
+                    </div>
+                </div>
+                <!-- item 3 -->
+                <div class="col-xl-4 col-md-6">
+                    <div class="portfolio-item">
+                       <!-- portfolio img  -->
+                        <div class="portfolio-thumbnail">
+                            <a href="javascript:void(0)">
+                                <img src="./assets/images/portfolio/portfolio-01.jpg" alt="Personal Portfolio Images">
+                            </a>
+                        </div>
+                        <!-- portfolio body  -->
+                        <div class="portfolio-content">
+                            <div class="portfolio-action">
+                                <div class="portfolio-category">
+                                    <span><i class="fas fa-bookmark"></i></span>
+                                    <span>Development</span>
+                                </div>
+                                <!-- portfolio viem -->
+                                <div class="portfolio-show">
+                                    <nav>
+                                        <ul>
+                                            <li>
+                                                <a href="#"><i class="fas fa-search-plus"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="fas fa-link"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="fab fa-blogger-b"></i></a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <h4>Arco Html template</h4>
+                        </div>
+                        
+                    </div>
+                </div>
+                <!-- item 4 -->
+                <div class="col-xl-4 col-md-6">
+                    <div class="portfolio-item">
+                       <!-- portfolio img  -->
+                        <div class="portfolio-thumbnail">
+                            <a href="javascript:void(0)">
+                                <img src="./assets/images/portfolio/portfolio-01.jpg" alt="Personal Portfolio Images">
+                            </a>
+                        </div>
+                        <!-- portfolio body  -->
+                        <div class="portfolio-content">
+                            <div class="portfolio-action">
+                                <div class="portfolio-category">
+                                    <span><i class="fas fa-bookmark"></i></span>
+                                    <span>Development</span>
+                                </div>
+                                <!-- portfolio viem -->
+                                <div class="portfolio-show">
+                                    <nav>
+                                        <ul>
+                                            <li>
+                                                <a href="#"><i class="fas fa-search-plus"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="fas fa-link"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="fab fa-blogger-b"></i></a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <h4>Arco Html template</h4>
+                        </div>
+                        
+                    </div>
+                </div>
+                <!-- item 5 -->
+                <div class="col-xl-4 col-md-6">
+                    <div class="portfolio-item">
+                       <!-- portfolio img  -->
+                        <div class="portfolio-thumbnail">
+                            <a href="javascript:void(0)">
+                                <img src="./assets/images/portfolio/portfolio-01.jpg" alt="Personal Portfolio Images">
+                            </a>
+                        </div>
+                        <!-- portfolio body  -->
+                        <div class="portfolio-content">
+                            <div class="portfolio-action">
+                                <div class="portfolio-category">
+                                    <span><i class="fas fa-bookmark"></i></span>
+                                    <span>Development</span>
+                                </div>
+                                <!-- portfolio viem -->
+                                <div class="portfolio-show">
+                                    <nav>
+                                        <ul>
+                                            <li>
+                                                <a href="#"><i class="fas fa-search-plus"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="fas fa-link"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="fab fa-blogger-b"></i></a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <h4>Arco Html template</h4>
+                        </div>
+                        
+                    </div>
+                </div>
+                <!-- item 6 -->
+                <div class="col-xl-4 col-md-6">
+                    <div class="portfolio-item">
+                       <!-- portfolio img  -->
+                        <div class="portfolio-thumbnail">
+                            <a href="javascript:void(0)">
+                                <img src="./assets/images/portfolio/portfolio-01.jpg" alt="Personal Portfolio Images">
+                            </a>
+                        </div>
+                        <!-- portfolio body  -->
+                        <div class="portfolio-content">
+                            <div class="portfolio-action">
+                                <div class="portfolio-category">
+                                    <span><i class="fas fa-bookmark"></i></span>
+                                    <span>Development</span>
+                                </div>
+                                <!-- portfolio viem -->
+                                <div class="portfolio-show">
+                                    <nav>
+                                        <ul>
+                                            <li>
+                                                <a href="#"><i class="fas fa-search-plus"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="fas fa-link"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="fab fa-blogger-b"></i></a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <h4>Arco Html template</h4>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- portfolio section end  -->
+
+    <!-- blog section start  -->
+    <section class="blog padding" data-scroll-index="4">
+        <div class="container">
+            <div class="title text-start">
+                <h2>
+                    Recent <span>Blogs</span>
+                    <span class="circle"></span>
+                </h2>
+                <p>Here I provide my personal information, skills and many more...</p>
+            </div>
+                 
+
+
+
+
+            <div class="row owl-carousel">
+                <div class="item">
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <a href="#">
+                            <img src="./assets/images/blog/blog-img-1.jpg" alt="Blog image" class="img-fluid">
+                            </a>
+                        </div>
+                        <div class="blog-body">
+                            <img src="./assets/images/blog/blog-author-img.jpg" alt="#" class="blog-author">
+                            <div class="blog-meta">
+                                <a href="#"><span><i class="far fa-user"></i>By Admin</span></a>
+                                <a href="javascript:void(0)" disable><span><i class="far fa-calendar-alt"></i>07 / 05 / 2021</span></a>
+                            </div>
+                            <h5>
+                                <a href="#">Top 10 html theme</a>
+                            </h5>
+                            <p>It is a long established fact that a reader will be distracted</p>
+                            <a href="#" class="blog-link">
+                                Read More <i class="fa fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <a href="#">
+                            <img src="./assets/images/blog/blog-img-1.jpg" alt="Blog image" class="img-fluid">
+                            </a>
+                        </div>
+                        <div class="blog-body">
+                            <img src="./assets/images/blog/blog-author-img.jpg" alt="#" class="blog-author">
+                            <div class="blog-meta">
+                                <a href="#"><span><i class="far fa-user"></i>By Admin</span></a>
+                                <a href="javascript:void(0)" disable><span><i class="far fa-calendar-alt"></i>07 / 05 / 2021</span></a>
+                            </div>
+                            <h5>
+                                <a href="#">hi</a>
+                            </h5>
+                            <p>It is a long established fact that a reader will be distracted</p>
+                            <a href="#" class="blog-link">
+                                Read More <i class="fa fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <a href="#">
+                            <img src="./assets/images/blog/blog-img-1.jpg" alt="Blog image" class="img-fluid">
+                            </a>
+                        </div>
+                        <div class="blog-body">
+                            <img src="./assets/images/blog/blog-author-img.jpg" alt="#" class="blog-author">
+                            <div class="blog-meta">
+                                <a href="#"><span><i class="far fa-user"></i>By Admin</span></a>
+                                <a href="javascript:void(0)" disable><span><i class="far fa-calendar-alt"></i>07 / 05 / 2021</span></a>
+                            </div>
+                            <h5>
+                                <a href="#">vou</a>
+                            </h5>
+                            <p>It is a long established fact that a reader will be distracted</p>
+                            <a href="#" class="blog-link">
+                                Read More <i class="fa fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <a href="#">
+                            <img src="./assets/images/blog/blog-img-1.jpg" alt="Blog image" class="img-fluid">
+                            </a>
+                        </div>
+                        <div class="blog-body">
+                            <img src="./assets/images/blog/blog-author-img.jpg" alt="#" class="blog-author">
+                            <div class="blog-meta">
+                                <a href="#"><span><i class="far fa-user"></i>By Admin</span></a>
+                                <a href="javascript:void(0)" disable><span><i class="far fa-calendar-alt"></i>07 / 05 / 2021</span></a>
+                            </div>
+                            <h5>
+                                <a href="#"> How To Create A Design Brief</a>
+                            </h5>
+                            <p>It is a long established fact that a reader will be distracted</p>
+                            <a href="#" class="blog-link">
+                                Read More <i class="fa fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        <div class="owl-nav">
+                            <button type="button" role="presentation" class="owl-prev disabled">hi</button>
+                            <button type="button" role="presentation" class="owl-next"><i class="fas fa-long-arrow-alt-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <a href="#">
+                            <img src="./assets/images/blog/blog-img-1.jpg" alt="Blog image" class="img-fluid">
+                            </a>
+                        </div>
+                        <div class="blog-body">
+                            <img src="./assets/images/blog/blog-author-img.jpg" alt="#" class="blog-author">
+                            <div class="blog-meta">
+                                <a href="#"><span><i class="far fa-user"></i>By Admin</span></a>
+                                <a href="javascript:void(0)" disable><span><i class="far fa-calendar-alt"></i>07 / 05 / 2021</span></a>
+                            </div>
+                            <h5>
+                                <a href="#"> How To Create A Design Brief</a>
+                            </h5>
+                            <p>It is a long established fact that a reader will be distracted</p>
+                            <a href="#" class="blog-link">
+                                Read More <i class="fa fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <a href="#">
+                            <img src="./assets/images/blog/blog-img-1.jpg" alt="Blog image" class="img-fluid">
+                            </a>
+                        </div>
+                        <div class="blog-body">
+                            <img src="./assets/images/blog/blog-author-img.jpg" alt="#" class="blog-author">
+                            <div class="blog-meta">
+                                <a href="#"><span><i class="far fa-user"></i>By Admin</span></a>
+                                <a href="javascript:void(0)" disable><span><i class="far fa-calendar-alt"></i>07 / 05 / 2021</span></a>
+                            </div>
+                            <h5>
+                                <a href="#"> How To Create A Design Brief</a>
+                            </h5>
+                            <p>It is a long established fact that a reader will be distracted</p>
+                            <a href="#" class="blog-link">
+                                Read More <i class="fa fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <a href="#">
+                            <img src="./assets/images/blog/blog-img-1.jpg" alt="Blog image" class="img-fluid">
+                            </a>
+                        </div>
+                        <div class="blog-body">
+                            <img src="./assets/images/blog/blog-author-img.jpg" alt="#" class="blog-author">
+                            <div class="blog-meta">
+                                <a href="#"><span><i class="far fa-user"></i>By Admin</span></a>
+                                <a href="javascript:void(0)" disable><span><i class="far fa-calendar-alt"></i>07 / 05 / 2021</span></a>
+                            </div>
+                            <h5>
+                                <a href="#"> How To Create A Design Brief</a>
+                            </h5>
+                            <p>It is a long established fact that a reader will be distracted</p>
+                            <a href="#" class="blog-link">
+                                Read More <i class="fa fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <a href="#">
+                            <img src="./assets/images/blog/blog-img-1.jpg" alt="Blog image" class="img-fluid">
+                            </a>
+                        </div>
+                        <div class="blog-body">
+                            <img src="./assets/images/blog/blog-author-img.jpg" alt="#" class="blog-author">
+                            <div class="blog-meta">
+                                <a href="#"><span><i class="far fa-user"></i>By Admin</span></a>
+                                <a href="javascript:void(0)" disable><span><i class="far fa-calendar-alt"></i>07 / 05 / 2021</span></a>
+                            </div>
+                            <h5>
+                                <a href="#"> How To Create A Design Brief</a>
+                            </h5>
+                            <p>It is a long established fact that a reader will be distracted</p>
+                            <a href="#" class="blog-link">
+                                Read More <i class="fa fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="blog-item">
+                        <div class="blog-img">
+                            <a href="#">
+                            <img src="./assets/images/blog/blog-img-1.jpg" alt="Blog image" class="img-fluid">
+                            </a>
+                        </div>
+                        <div class="blog-body">
+                            <img src="./assets/images/blog/blog-author-img.jpg" alt="#" class="blog-author">
+                            <div class="blog-meta">
+                                <a href="#"><span><i class="far fa-user"></i>By Admin</span></a>
+                                <a href="javascript:void(0)" disable><span><i class="far fa-calendar-alt"></i>07 / 05 / 2021</span></a>
+                            </div>
+                            <h5>
+                                <a href="#"> How To Create A Design Brief</a>
+                            </h5>
+                            <p>It is a long established fact that a reader will be distracted</p>
+                            <a href="#" class="blog-link">
+                                Read More <i class="fa fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+               
+            </div>
+
+
+
+
+        </div>
+    </section>
+    <!-- blog section end  -->
+
+    <!-- contact section start  -->
+    <section class="contact padding bg-white" data-scroll-index="5">
+        <div class="container">
+            <div class="title">
+                <h2>
+                    Get In <span>Touch</span>
+                    <span class="circle"></span>
+                </h2>
+                <p>Here I provide my personal information, skills and many more...</p>
+            </div>
+            <div class="contact-form">
 				<iframe src="https://contactform001.blogspot.com/" scrolling="no"></iframe>
 			</div>
-			<div class="note">Note : This is a dynamic form. You can easily message me.</div>
-		</div>
-	</section>
+        </div>
+    </section>
+    <!-- contact section end  -->
+    
+    <!-- footer section start  -->
+    <section class="footer">
+        <div class="container">
+            <div class="copyright">
+                <p>&copy; <span id="year"></span> All Rights Reserved | <a href="">Awal Bashar</a></p>
+            </div>
+        </div>
+    </section>
+    <!-- footer section end  -->
 
-	<!-- Footer Section -->
-	<footer class="footer">
-		<div class="container flex justify-between items-center">
-			<div class="copyright-section">
-				&copy; 2021 All Right Reserved | <a href="index.html">Awal Bashar</a>
-			</div>
-			<div class="social-section">
-				<ul>
-					<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-					<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-					<li><a href="#"><i class="fab fa-youtube"></i></a></li>
-					<li><a href="#"><i class="fab fa-blogger-b"></i></a></li>
-				</ul>
-			</div>
-		</div>
-	</footer>
-	<!-- JS File -->
-	<script src="./js/jquery-3.6.0.min.js"></script>
-	<script src="./js/mixitup.min.js"></script>
-	<script src="./js/scrollIt.min.js"></script>
-	<script src="./js/wow.min.js"></script>
-	<script src="./js/app.js"></script>
-
-
+    <!-- js file -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="assets/js/headline.js"></script>
+    <script src="assets/js/scrollIt.min.js"></script>
+    <script src="assets/js/parallax.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
