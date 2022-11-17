@@ -72,6 +72,12 @@ p {
 .padding {
     padding: 6rem 0;
 }
+.bg1 {
+    background: var(--bgc);
+}
+.text-main {
+    color: var(--main);
+}
 
 /* button  */
 .btn-sec a {
@@ -609,18 +615,22 @@ p {
 .portfolio .portfolio-item:hover .portfolio-category span {
     color: var(--main);
 }
+.social-icon ul,
 .portfolio .portfolio-content .portfolio-show ul {
 	display: flex;
 	justify-content: center;
 	height: 100%;
 	align-items: center;
 }
+.social-icon ul li,
 .portfolio .portfolio-content .portfolio-show ul li {
     margin-right: 1rem;
 }
+.social-icon ul li:last-child,
 .portfolio .portfolio-content .portfolio-show ul li:last-child {
     margin-right: 0;
 }
+.social-icon ul li a,
 .portfolio .portfolio-content .portfolio-show ul li a {
 	color: var(--white);
 	background-color: var(--main);
@@ -634,6 +644,7 @@ p {
 	font-size: 14px;
 	transition: var(--sec3);
 }
+.social-icon ul li a:hover,
 .portfolio .portfolio-content .portfolio-show ul li a:hover {
     background-color: transparent;
     color: var(--main);
@@ -757,7 +768,8 @@ p {
 	color: var(--white);
 }
 .footer p a {
-    color: var(--main);
+    color: var(--white);
+    text-decoration: underline;
     letter-spacing: 1px;
 }
 /* footer section End */
