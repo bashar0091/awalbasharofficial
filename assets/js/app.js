@@ -84,5 +84,10 @@ $(document).ready(function(){
 
     });
    
+    // lighbox 
+    lightbox.option({
+        'resizeDuration': 200,
+        'wrapAround': true
+    })
 
 });
