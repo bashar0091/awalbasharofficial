@@ -19,6 +19,7 @@
     --shadow-1 : 5px 5px 15px #D1D9E6, -5px -5px 15px #ffffff;
     --shadow-2 : 0px 0px 5px #C6CBD2;
     --shadow-3 : 0px 10px 30px rgba(0, 0, 0, 0.2);
+    --shadow-4 : 0px 3px 10px 0px rgb(80 80 80 / 10%);
 
     /* fonts variables */
     --body: 'Montserrat', sans-serif;
@@ -77,6 +78,9 @@ p {
 }
 .text-main {
     color: var(--main);
+}
+#pagination-container {
+    text-align: center;
 }
 
 /* button  */
