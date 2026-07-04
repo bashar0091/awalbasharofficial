@@ -1,1121 +1,950 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awal Bashar | Full Stack & AI Systems Engineer</title>
 
-    <!-- title here -->
-    <title>Awal Bashar | React, WordPress, Frontend Developer</title>
+      <link rel="icon" type="image/x-icon" href="assets/images/awalbashar-photo.png">
 
-    <!-- favicon -->
-    <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-icon">
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Azeret Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#020617',
+                            card: '#0B1329',
+                            accent: '#3B82F6',
+                            glow: '#60A5FA',
+                            terminal: '#050B18'
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'scanline': 'scanline 6s linear infinite',
+                    },
+                    keyframes: {
+                        scanline: {
+                            '0%': { transform: 'translateY(-100%)' },
+                            '100%': { transform: 'translateY(100%)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- fontawesome css  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .project-card {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card.fade-out {
+            opacity: 0;
+            transform: scale(0.92);
+            pointer-events: none;
+        }
+        .project-card.fade-in {
+            opacity: 1;
+            transform: scale(1);
+        }
 
-    <!-- plugins css -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/headline.css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/lightbox.min.css">
-    <link rel="stylesheet" href="assets/css/simplePagination.css">
+        .grid-bg {
+            background-image: linear-gradient(to right, rgba(59, 130, 246, 0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(59, 130, 246, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
 
-    <!-- main css file -->
-    <link rel="stylesheet" href="assets/css/style.css">
+        .tab-active {
+            background-color: #3B82F6 !important;
+            color: #FFFFFF !important;
+            border-color: #3B82F6 !important;
+            box-shadow: 4px 4px 0px rgba(96, 165, 250, 0.4);
+        }
 
-    <!-- responsive css  -->
-    <link rel="stylesheet" href="assets/css/responsive.css">
+        .neon-glow-card:hover {
+            box-shadow: 0px 0px 20px rgba(59, 130, 246, 0.3);
+            border-color: #3B82F6;
+        }
 
+        #carousel-text {
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-brand-dark text-slate-100 antialiased overflow-x-hidden selection:bg-blue-600 selection:text-white">
 
-    <!-- header section start -->
-    <header class="header" data-scroll-index="0" data-parallax="scroll" data-image-src="./assets/images/header/header-bg.jpg">
+    <!-- CANVAS INTERACTIVE BACKGROUND -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <canvas id="neuralCanvas" class="w-full h-full opacity-40"></canvas>
+    </div>
 
-        <!-- navbar section start -->
-        <nav class="navbar-section" id="sticky">
-            <div class="container position-relative">
+    <!-- MAIN WRAPPER -->
+    <div class="relative z-10 grid-bg min-h-screen flex flex-col">
 
-                <!-- for mobile section start -->
-
-                <!-- mobile logo  -->
-                <div class="mobile-logo">
-                    <a href="index.html">
-                        Awal <span>Bashar</span>
+        <!-- TOP HEADER / NAV -->
+        <nav class="border-b-2 border-blue-500/30 bg-brand-dark/95 backdrop-blur-md sticky top-0 z-50 px-4 sm:px-6 py-3 sm:py-4 transition-all duration-300">
+            <div class="max-w-7xl mx-auto flex justify-between items-center gap-2">
+                <div class="flex items-center gap-2 sm:gap-4 shrink-0">
+                    <a href="#" class="font-sans text-lg sm:text-xl font-black tracking-tighter text-white uppercase group">
+                        AWAL<span class="text-blue-500 font-light group-hover:text-cyan-400 transition-colors duration-200">BASHAR</span>
+                        <span class="text-blue-500 font-black">.</span>
                     </a>
+                    <span class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 text-[9px] font-mono bg-blue-500/10 text-blue-400 border border-blue-500/20 uppercase tracking-widest">
+                        <span class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></span> Node: Active
+                    </span>
                 </div>
                 
-                <!-- humburger icon  -->
-                <div class="humburger" id="menu-click">
-                    <i class="fas fa-bars"></i>
+                <div class="hidden lg:flex items-center gap-8 text-[11px] font-mono font-bold tracking-widest text-slate-400">
+                    <a href="#about" class="hover:text-blue-400 transition-colors duration-200 flex items-center gap-1"><span class="text-blue-500/50">01.</span>// CORE</a>
+                    <a href="#expertise" class="hover:text-blue-400 transition-colors duration-200 flex items-center gap-1"><span class="text-blue-500/50">02.</span>// ARCHITECTURE</a>
+                    <a href="#sandbox" class="hover:text-blue-400 transition-colors duration-200 flex items-center gap-1"><span class="text-blue-500/50">03.</span>// AI_SANDBOX</a>
+                    <a href="#portfolio" class="hover:text-blue-400 transition-colors duration-200 flex items-center gap-1"><span class="text-blue-500/50">04.</span>// REPOSITORIES</a>
                 </div>
-                <!-- for mobile section  end -->
 
-                <!-- header menu start  -->
-                <div class="row for-mobile" id="for-mobile">
-                    <div class="d-xl-flex justify-content-center align-items-center">
-                        <!-- menu item first  -->
-                        <div class="menu">
-                            <ul>
-                                <li class="active" data-scroll-nav="0"><a href="#">home</a></li>
-                                <li data-scroll-nav="1"><a href="#">about</a></li>
-                                <li data-scroll-nav="2"><a href="#">services</a></li>
-                            </ul>
-                        </div>
-                        <!-- logo all  -->
-                        <div class="logo mx-5">
-                            <a href="index.html">
-                                Awal <span>Bashar</span>
-                            </a>
-                        </div>
-                        <!-- menu item second -->
-                        <div class="menu">
-                            <ul>
-                                <li data-scroll-nav="3"><a href="#">portfolio</a></li>
-                                <li data-scroll-nav="4"><a href="#">blogs</a></li>
-                                <li data-scroll-nav="5"><a href="#">contact</a></li>
-                            </ul>
-                        </div>
+                <div class="flex items-center gap-3 sm:gap-6 shrink-0">
+                    <div class="hidden sm:flex flex-col text-right font-mono text-[10px] text-slate-500 border-l border-slate-800 pl-4">
+                        <span class="text-slate-400 uppercase font-bold tracking-wider">Dhaka, BD</span>
+                        <span id="nav-live-clock">00:00:00 PM (GMT+6)</span>
+                    </div>
+                    <div>
+                        <a href="mailto:awalbashar194@gmail.com" class="font-mono text-[9px] sm:text-[11px] font-bold border-2 border-blue-500 px-3 sm:px-5 py-2 sm:py-2.5 text-white bg-blue-600/10 hover:bg-blue-600 hover:shadow-[4px_4px_0px_#020617] transition-all duration-200 rounded-none inline-block whitespace-nowrap">
+                            EXECUTE_INIT()
+                        </a>
                     </div>
                 </div>
-                <!-- header menu end  -->
-
             </div>
         </nav>
-        <!-- navbar section end -->
 
-        <!-- hero section start -->
-        <div class="container">
-            <div class="row">
-                <div class="hero-section">
-                    <h4>
-                        Hi<span>!</span>
-                    </h4>
-                    <h2>
-                        I'm <span>Awal Bashar</span>
-                    </h2>
-                    <!-- headeline  -->
-                    <h3 class="cd-headline clip">
-                        <span>I'm a</span>
-                        <span class="cd-words-wrapper">
-                            <b class="is-visible">React Devloper</b>
-                            <b>JavaScript Developer</b>
-                            <b>WordPress Developer</b>
-                            <b>Designer</b>
-                            <b>Mentor</b>
-                            <b>Freelancer</b>
-                        </span>
-                    </h3>
-                    <p>Coding is not only my profession, but also my passion</p>
-                    <!-- btn  -->
-                    <div class="btn-sec">
-                        <a href="Awal-Bashar-Resume.pdf" class="btn-1">Download CV</a>
-                        <a href="https://github.com/bashar0091" target="_blank" class="btn-2">See Portfolio</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- hero section end  -->
-
-    </header>
-    <!-- header section end -->
-    
-    <!-- about section start  -->
-    <section class="about bg-white" data-scroll-index="1">
-
-        <!-- top section start -->
-        <div class="container padding">
-            <div class="title">
-                <h2>
-                    About <span>ME</span>
-                    <span class="circle"></span>
-                </h2>
-                <p>
-                    Highly proficient React, WordPress & Frontend Developer with 3+ years of experience.
-                </p>
-            </div>
-            <div class="row">
-                <div class="col-xl-6">
-                    <!-- about img  -->
-                    <div class="about-img">
-                        <img src="assets/images/about/about-img.jpg" class="img-fluid" alt="#">
-                    </div>
-                </div>
-                <div class="col-xl-6  d-xl-block d-flex flex-column align-items-center">
-                    <div class="d-flex flex-column justify-content-xl-around h-100">
-                        <!-- about info  -->
-                        <nav class="about-info">
-                            <ul>
-                                <li>
-                                    <span>Name</span>
-                                    <span>Awal Bashar</span>
-                                </li>
-                                <li>
-                                    <span>Date of Birth</span>
-                                    <span>12, March, 1995</span>
-                                </li>
-                                <li>
-                                    <span>Nationality</span>
-                                    <span>Bangladeshi</span>
-                                </li>
-                                <li>
-                                    <span>Study</span>
-                                    <span>BSc in Computer Science Engineering</span>
-                                </li>
-                                <li>
-                                    <span>Current Profession</span>
-                                    <span>React, JavaScript, WordPress and Frontend Developer at LSKIT(lskit.com)</span>
-                                </li>
-                                <li>
-                                    <span>Interested In</span>
-                                    <span>Programming, Node Js, Express Js, MongoDB, Php, MySql</span>
-                                </li>
-                            </ul>
-                        </nav>
+        <header id="about" class="px-4 sm:px-6 border-b border-slate-900 bg-gradient-to-b from-brand-dark to-slate-950/50 relative overflow-hidden"> 
+            <div class="absolute inset-0 grid-bg opacity-70 pointer-events-none"></div>
+            
+            <div class="max-w-7xl mx-auto py-16 sm:py-20 lg:py-32 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center relative z-10">
+                
+                <div class="lg:col-span-7 flex flex-col justify-center space-y-6 sm:space-y-8 text-left">
+                    <div class="space-y-4">
+                        <div class="inline-flex items-center gap-2 font-mono text-[9px] sm:text-[10px] tracking-[0.25em] text-blue-400 uppercase bg-blue-950/40 px-3 py-1 border border-blue-900/50 max-w-max">
+                            <i class="fas fa-terminal text-[9px] text-cyan-400 shrink-0"></i> <span class="truncate">Engineering Production Grade Systems</span>
+                        </div>
                         
-                        <!-- btn  -->
-                        <div class="btn-sec">
-                            <a href="Cv.pdf" class="btn-2 btn-4">Download CV</a>
-                            <a href="mailto: awalbashar194@gmail.com" class="btn-3">Contact ME</a>
+                        <h1 class="text-4xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-[1.05]">
+                            MD AWAL BASHAR <br>
+                            <span class="block relative overflow-hidden h-[1.35em] py-1 mt-1 w-full whitespace-nowrap -mb-1" id="carousel-container">
+                                <span class="absolute left-0 top-0 pt-0.5 w-full text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-400 font-extrabold tracking-tighter" id="carousel-text">
+                                    Full Stack Engineer
+                                </span>
+                            </span>
+                        </h1>
+
+                        <p class="text-slate-400 text-sm md:text-base max-w-2xl leading-relaxed font-normal tracking-wide">
+                            I architecture decentralized headless frameworks, optimized React architecture, and real-time AI pipelines. Specializing in sub-second LCP execution and scaling critical web vital matrices under high concurrency.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2 sm:gap-4 pt-2 w-full max-w-xl">
+                        <div class="border-2 border-slate-800 bg-brand-terminal p-2.5 sm:p-4 text-left relative rounded-none shadow-[4px_4px_0px_#3B82F6]">
+                            <div class="text-xl sm:text-2xl md:text-3xl font-black text-white font-mono tracking-tight" data-target="99">0</div>
+                            <div class="text-[7px] sm:text-[9px] font-mono font-bold text-slate-500 tracking-widest uppercase mt-1.5 truncate">// CWV_OPT</div>
+                        </div>
+                        <div class="border-2 border-slate-800 bg-brand-terminal p-2.5 sm:p-4 text-left relative rounded-none shadow-[4px_4px_0px_#3B82F6]">
+                            <div class="text-xl sm:text-2xl md:text-3xl font-black text-blue-400 font-mono tracking-tight" data-target="60">0</div>
+                            <div class="text-[7px] sm:text-[9px] font-mono font-bold text-slate-500 tracking-widest uppercase mt-1.5 truncate">// NODES</div>
+                        </div>
+                        <div class="border-2 border-slate-800 bg-brand-terminal p-2.5 sm:p-4 text-left relative rounded-none shadow-[4px_4px_0px_#3B82F6]">
+                            <div class="text-xl sm:text-2xl md:text-3xl font-black text-cyan-400 font-mono tracking-tight" data-target="100">0</div>
+                            <div class="text-[7px] sm:text-[9px] font-mono font-bold text-slate-500 tracking-widest uppercase mt-1.5 truncate">// ACCURACY</div>
                         </div>
                     </div>
+
+                    <!-- FIXED BUTTON LAYOUT (SIDE-BY-SIDE ON DESKTOP, STACKED ON MOBILE) -->
+                    <div class="flex flex-col sm:flex-row flex-wrap gap-4 pt-4">
+                        <a href="#portfolio" class="text-center bg-blue-600 border-2 border-blue-600 px-6 sm:px-8 py-3.5 sm:py-4 text-white font-mono text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase hover:bg-transparent hover:text-blue-400 transition-all duration-300 shadow-[4px_4px_0px_#1e293b] active:shadow-none active:translate-x-1 active:translate-y-1 w-full sm:w-auto">
+                            FETCH_WORKLOG _
+                        </a>
+                        <a href="https://github.com/bashar0091" target="_blank" class="text-center bg-slate-900 border-2 border-slate-700 px-6 sm:px-8 py-3.5 sm:py-4 text-slate-300 font-mono text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase hover:border-blue-500 hover:text-white transition-all duration-300 shadow-[4px_4px_0px_#020617] active:shadow-none active:translate-x-1 active:translate-y-1 w-full sm:w-auto">
+                            <i class="fab fa-github mr-2"></i> PROFILE.CONFIG
+                        </a>
+                    </div>
                 </div>
-            </div>
 
-            <nav class="social-icon mt-5">
-                <ul>
-                    <li>
-                        <a href="https://wa.me/+8801631483563" target="_blank">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.linkedin.com/in/awal-bashar-40a39a16a/" target="_blank">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/bashar0091" target="_blank">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="mailto: awalbashar194@gmail.com" target="_blank">
-                            <i class="far fa-envelope"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.youtube.com/channel/UCQQEC0VQldFDps-BN9-3-pQ" target="_blank">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-        <!-- top section end -->
-
-        <div class="skills-sec py-5">
-            <div class="container-md container-fluid py-5">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <div class="skills-title">
-                            <h3>Frequently Ask and Questions, About My Work </h3>
+                <div class="lg:col-span-5 w-full max-w-lg mx-auto flex flex-col gap-5 relative">
+                    <div class="absolute -inset-4 bg-blue-500/[0.04] blur-2xl rounded-none pointer-events-none"></div>
+                    
+                    <div class="border-2 border-slate-800 bg-brand-terminal p-3 sm:p-4 flex items-center justify-between shadow-[6px_6px_0px_#020617] rounded-none relative z-10">
+                        <div class="flex items-center gap-3 sm:gap-4 min-w-0">
+                            <div class="relative shrink-0 select-none">
+                                <img src="assets/images/awalbashar-photo.png" 
+                                     alt="MD. Awal Bashar" 
+                                     class="relative w-10 h-10 sm:w-12 sm:h-12 rounded-none border border-slate-700 object-cover bg-brand-card shadow-[2px_2px_0px_#050B18]"
+                                     onerror="this.onerror=null; this.src='https://placehold.co/150x150/0B1329/3B82F6?text=AB'">
+                            </div>
+                            <div class="space-y-0.5 min-w-0 pr-2">
+                                <p class="text-[10px] sm:text-[11px] font-mono font-black tracking-wide text-white uppercase truncate">MD. AWAL BASHAR</p>
+                                <div class="inline-flex items-center gap-1.5 bg-blue-950/60 border border-blue-900/30 px-2 py-0.5 text-[8px] sm:text-[9px] font-mono text-blue-400 rounded-none max-w-full">
+                                    <span class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse shrink-0"></span> <span class="truncate">core_operator://f4001a</span>
+                                </div>
+                            </div>
                         </div>
-                        <!-- accordion -->
-                        <div class="accordion">
+                        <div class="text-right hidden sm:block font-mono shrink-0">
+                            <p class="text-[9px] text-slate-500 uppercase tracking-widest font-bold">Role Matrix</p>
+                            <p class="text-[10px] text-slate-400 font-medium tracking-tighter mt-0.5">SYS_ENG // DHAKA</p>
+                        </div>
+                    </div>
 
-                            <div class="item active">
-                                <div class="accrodion-title">
-                                    <h6>
-                                        Is Awal Bashar is a good designer ?
-                                    </h6>
-                                </div>
-                                <div class="accordion-body active">
-                                    <p>
-                                        Yes, <br>
-                                        I am always try to be a good designer. I research different types of design then implement these in my project. Don't worry about my designing skills. Check my portfolio in below and try to read my blogs.
-                                    </p>
-                                </div>
+                    <div class="relative w-full border-2 border-slate-800 bg-brand-terminal rounded-none shadow-[10px_10px_0px_#020617] overflow-hidden z-10 flex flex-col">
+                        <div class="bg-slate-950 px-3 sm:px-4 py-3 flex items-center justify-between border-b-2 border-slate-800">
+                            <div class="flex items-center gap-1.5 shrink-0">
+                                <span class="w-2 h-2 bg-slate-800 border border-slate-700 rounded-full inline-block"></span>
+                                <span class="w-2 h-2 bg-slate-800 border border-slate-700 rounded-full inline-block"></span>
+                                <span class="w-2 h-2 bg-slate-800 border border-slate-700 rounded-full inline-block"></span>
                             </div>
-
-                            <div class="item">
-                                <div class="accrodion-title">
-                                    <h6>How Awal Bashar manage his clients ? </h6>
-                                </div>
-                                <div class="accordion-body">
-                                    <p>
-                                        I try to satisfy my clients alltime and also full fill their requierments. I try to finished my work in right time. So they satisfy. Don't worry about my service. Check my services at service section.
-                                    </p>
-                                </div>
+                            <span class="text-[9px] sm:text-[10px] font-mono text-slate-400 flex items-center gap-1.5 tracking-tight font-medium truncate ml-2">
+                                <i class="fas fa-microchip text-blue-500 animate-spin"></i> pipeline_agent_monitor.sh
+                            </span>
+                            <i class="fas fa-sliders-h text-slate-700 text-xs hidden sm:block ml-2"></i>
+                        </div>
+                        
+                        <div class="p-3 sm:p-5 font-mono text-[10px] sm:text-xs text-blue-400/90 space-y-3.5 overflow-x-auto">
+                            <div class="flex gap-2.5 whitespace-nowrap">
+                                <span class="text-slate-600 font-bold select-none shrink-0 w-4">01</span>
+                                <span class="text-slate-300">import <span class="text-indigo-400">core_systems</span> as <span class="text-yellow-500">sys</span></span>
                             </div>
-                            <!-- <div class="item">
-                                <div class="accrodion-title">
-                                    <h6>We Are Creative And Professional</h6>
-                                </div>
-                                <div class="accordion-body">
-                                    <p>Lorem ipsum dolor sit amet, in quodsi vulputate pro. Ubique maluisset vel te, his dico vituperata ut. in vituperata ut in quodsi maluisset vel te, his dico vituperata ut in quodsi Ubique. in quodsi vulputate.</p>
-                                </div>
-                            </div>  -->
-                            <div class="item">
-                                <div class="accrodion-title">
-                                    <h6>How to contact with Awal Bashar ? </h6>
-                                </div>
-                                <div class="accordion-body">
-                                    <p>
-                                        Don't worry, <br>
-                                        You can easily contact with me through my social media account, whatsapp and freelancing marketplace profile. Also you can message from contact section. There is a dynamic form, here you can easily message to me.
-                                    </p>
-                                </div>
+                            <div class="flex gap-2.5 whitespace-nowrap">
+                                <span class="text-slate-600 font-bold select-none shrink-0 w-4">02</span>
+                                <span class="text-slate-300">pipeline = sys.load_weights(<span class="text-emerald-400">"./layers/lcp_matrix"</span>)</span>
                             </div>
                             
+                            <div class="border-t border-slate-900 my-2"></div>
+                            
+                            <div class="text-[9px] sm:text-[11px] space-y-1 overflow-hidden h-36 select-none" id="terminal-gpu-logs"></div>
+
+                            <div class="border-t border-slate-900 pt-4 mt-2 flex flex-col sm:flex-row justify-between sm:items-center gap-2 text-[9px] sm:text-[10px]">
+                                <span class="text-emerald-400 font-bold flex items-center gap-1.5 tracking-wide">
+                                    <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full inline-block animate-ping"></span> PIPELINE CLUSTER ONLINE
+                                </span>
+                                <span class="text-slate-500 font-bold tracking-wider sm:text-right">3.4 TFLOPS</span>
+                            </div>
                         </div>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <section id="expertise" class="bg-slate-950/90 border-y border-slate-800/80 py-16 sm:py-20 px-4 sm:px-6 relative z-20">
+            <div class="max-w-7xl mx-auto text-center space-y-4 mb-12 sm:mb-16">
+                <span class="text-xs font-mono text-blue-500 tracking-widest uppercase">// SCIENTIFIC BENCHMARKS</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight">Ecosystem Architecture</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">Converting standard software layers into automated workflows utilizing neural integration checkpoints.</p>
+            </div>
+
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                <div class="border-2 border-slate-800 bg-brand-card p-6 md:p-8 hover:border-blue-500/80 hover:shadow-[6px_6px_0px_#3B82F6] transition-all duration-300 relative group overflow-hidden">
+                    <div class="absolute inset-0 bg-blue-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="text-blue-500 text-3xl mb-4"><i class="fas fa-network-wired"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-3 font-mono">Decoupled Headless Matrix</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">Isolating administrative overhead: leveraging secure dynamic CMS platforms (WordPress/WooCommerce) strictly as backend API hubs, rendering to static React/Next.js client models.</p>
+                </div>
+                <div class="border-2 border-slate-800 bg-brand-card p-6 md:p-8 hover:border-blue-500/80 hover:shadow-[6px_6px_0px_#3B82F6] transition-all duration-300 relative group overflow-hidden">
+                    <div class="absolute inset-0 bg-blue-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="text-blue-500 text-3xl mb-4"><i class="fas fa-tachometer-alt"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-3 font-mono">Performance Auditing & CVV</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">Aggressive compression protocols, custom node caching mechanics, image asset offloading pipelines, and server network optimizations for 99+ Core Web Vitals scorecards.</p>
+                </div>
+                <div class="border-2 border-slate-800 bg-brand-card p-6 md:p-8 hover:border-blue-500/80 hover:shadow-[6px_6px_0px_#3B82F6] transition-all duration-300 relative group overflow-hidden">
+                    <div class="absolute inset-0 bg-blue-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="text-blue-500 text-3xl mb-4"><i class="fas fa-brain"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-3 font-mono">AI Systems Automation</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">Connecting production database instances directly to custom LLM layers to execute classifications, real-time context summarization, and autonomous CRM operations.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="sandbox" class="px-4 sm:px-6 py-16 sm:py-20 w-full relative z-20">
+            <div class="max-w-7xl mx-auto border-2 border-slate-800 bg-brand-terminal/60 backdrop-blur p-5 sm:p-6 md:p-10 shadow-[8px_8px_0px_#1e293b] relative overflow-hidden">
+                <div class="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-blue-500 to-transparent animate-scanline pointer-events-none"></div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                    <div class="lg:col-span-5 space-y-6 flex flex-col justify-between">
+                        <div>
+                            <span class="text-[10px] sm:text-xs font-mono text-blue-500 tracking-wider uppercase flex items-center gap-1.5 mb-1">
+                                <span class="h-1.5 w-1.5 bg-blue-500 inline-block animate-ping"></span> MOCK_TEST_WORKSPACE_V1.2
+                            </span>
+                            <h2 class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">Active Model Sandbox</h2>
+                            <p class="text-sm text-slate-400 mt-2 leading-relaxed">
+                                Choose an engineering deployment goal below, adjust inference hyper-parameters, and execute live simulation to monitor computation loops.
+                            </p>
+                        </div>
+
+                        <div class="space-y-4 my-4 font-mono text-[10px] sm:text-xs">
+                            <div>
+                                <label class="text-slate-400 block mb-2 uppercase tracking-wide">Select Task Model Checkpoint:</label>
+                                <div class="grid grid-cols-1 gap-2">
+                                    <button data-sandbox-task="lcp" class="sandbox-task-btn text-left p-3 border-2 border-blue-500/80 bg-blue-950/20 text-white font-medium flex justify-between items-center transition cursor-pointer">
+                                        <span class="truncate pr-2">OPTIMIZE_LCP_PIPELINE</span>
+                                        <i class="fas fa-bolt text-blue-400 shrink-0"></i>
+                                    </button>
+                                    <button data-sandbox-task="classify" class="sandbox-task-btn text-left p-3 border-2 border-slate-800 bg-slate-900/40 text-slate-400 hover:text-white hover:border-slate-700 transition cursor-pointer">
+                                        <span class="truncate pr-2">CLASSIFY_INCOMING_LEADS</span>
+                                        <i class="fas fa-filter text-slate-500 shrink-0"></i>
+                                    </button>
+                                    <button data-sandbox-task="content" class="sandbox-task-btn text-left p-3 border-2 border-slate-800 bg-slate-900/40 text-slate-400 hover:text-white hover:border-slate-700 transition cursor-pointer">
+                                        <span class="truncate pr-2">SYNTHESIZE_DESCRIPTIONS</span>
+                                        <i class="fas fa-feather text-slate-500 shrink-0"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-slate-400 mb-1.5 uppercase">
+                                    <span>Inference Temp: <span id="temp-val" class="text-blue-400">0.72</span></span>
+                                </div>
+                                <input type="range" min="0.1" max="1.5" step="0.05" value="0.72" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-blue-500" id="temp-slider">
+                            </div>
+                        </div>
+
+                        <div>
+                            <button id="execute-sandbox-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-mono text-[10px] sm:text-xs font-bold tracking-widest py-3.5 border-2 border-blue-600 hover:shadow-[4px_4px_0px_#ffffff] active:scale-[0.98] transition-all duration-150 cursor-pointer">
+                                <i class="fas fa-play mr-1"></i> RUN_INFERENCE_CHECKPOINT
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 border-2 border-slate-800 bg-slate-950 p-4 md:p-6 flex flex-col justify-between font-mono text-[10px] sm:text-xs relative overflow-hidden min-h-[300px]">
+                        <div class="absolute inset-0 bg-gradient-to-b from-slate-950/20 via-transparent to-slate-950/80 pointer-events-none z-10"></div>
+                        
+                        <div class="flex flex-col sm:flex-row justify-between sm:items-center text-slate-500 border-b border-slate-900 pb-2.5 mb-3 z-20 gap-2">
+                            <span class="flex items-center gap-1.5 text-blue-400 truncate">
+                                <span class="relative flex h-2 w-2 shrink-0">
+                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500 animate-pulse"></span>
+                                </span>
+                                <span class="truncate">model_sandbox_monitor.log</span>
+                            </span>
+                            <span id="sandbox-latency-meter" class="shrink-0 sm:text-right">Awaiting command...</span>
+                        </div>
+
+                        <div class="flex-grow overflow-y-auto space-y-2.5 select-none text-slate-300 pr-1 h-56 max-h-56 z-20 scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent break-words" id="sandbox-screen-logs">
+                            <div class="text-slate-500">// Terminal standby. Select a model execution task from the left, configure Temperature scales, and trigger computation node.</div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row justify-between sm:items-center border-t border-slate-900 pt-3.5 mt-3 text-[9px] sm:text-[10px] text-slate-500 z-20 gap-2">
+                            <div class="flex gap-4">
+                                <span>GRID_NODES: OK</span>
+                                <span>LOSS: 0.041</span>
+                            </div>
+                            <span class="text-blue-500/80 font-bold tracking-wider sm:text-right">SECURE_WORKSPACE // Dhaka_001</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="px-4 sm:px-6 py-16 sm:py-20 w-full relative z-20">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-6 mb-12 border-b border-slate-800 pb-8">
+                    <div>
+                        <span class="text-xs font-mono text-blue-500 tracking-widest uppercase">// STABLE ECOSYSTEM DEPLOYMENTS</span>
+                        <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight mt-2">Successful Projects</h2>
                     </div>
                     
-                    <!-- progress bar section  -->
-                    <div class="col-lg-6">
-                        <div class="about-skill">
-                            <div class="skills">
-                                <div class="skill-item">JavaScript</div>
-                                <div class="skill-progress">
-                                    <div class="progres" data-value="75%"></div>
-                                </div>
-                            </div>
-                            <div class="skills">
-                                <div class="skill-item">React Js</div>
-                                <div class="skill-progress">
-                                    <div class="progres" data-value="65%"></div>
-                                </div>
-                            </div>
-                            <div class="skills">
-                                <div class="skill-item">WordPress</div>
-                                <div class="skill-progress">
-                                    <div class="progres" data-value="85%"></div>
-                                </div>
-                            </div>
-                            <div class="skills">
-                                <div class="skill-item">jquery</div>
-                                <div class="skill-progress">
-                                    <div class="progres" data-value="85%"></div>
-                                </div>
-                            </div>
-                            <div class="skills">
-                                <div class="skill-item">Bootstrap 4/5, Tailwind, Scss</div>
-                                <div class="skill-progress">
-                                    <div class="progres" data-value="90%"></div>
-                                </div>
-                            </div>
-                            <div class="skills">
-                                <div class="skill-item">php, mysql</div>
-                                <div class="skill-progress">
-                                    <div class="progres" data-value="60%"></div>
-                                </div>
-                            </div>
-
-                        </div>
+                    <div class="flex flex-wrap gap-2 text-[10px] sm:text-xs font-mono" id="filter-wrapper">
+                        <button data-filter="all" class="filter-btn px-3 py-1.5 sm:px-4 sm:py-2 border-2 border-blue-500/40 text-slate-300 hover:text-white tracking-widest cursor-pointer transition-all duration-200 tab-active">
+                            ALL_WORK
+                        </button>
+                        <button data-filter="react-next" class="filter-btn px-3 py-1.5 sm:px-4 sm:py-2 border-2 border-slate-800 text-slate-400 hover:text-white tracking-widest cursor-pointer transition-all duration-200">
+                            REACT_NEXTJS
+                        </button>
+                        <button data-filter="wordpress-headless" class="filter-btn px-3 py-1.5 sm:px-4 sm:py-2 border-2 border-slate-800 text-slate-400 hover:text-white tracking-widest cursor-pointer transition-all duration-200">
+                            WORDPRESS_ECOMMERCE
+                        </button>
+                        <button data-filter="ml-ai" class="filter-btn px-3 py-1.5 sm:px-4 sm:py-2 border-2 border-slate-800 text-slate-400 hover:text-white tracking-widest cursor-pointer transition-all duration-200">
+                            AI_AUTOMATION
+                        </button>
                     </div>
                 </div>
-            </div> 
-        </div>
 
-    </section>
-    <!-- about section end -->
-
-    <!-- services section start  -->
-    <section class="services" data-scroll-index="2">
-        <div class="bg-white">
-            <div class="container padding">
-                <div class="title">
-                    <h2>
-                        My <span>Services</span>
-                        <span class="circle"></span>
-                    </h2>
-                    <p>Here I provide my personal information, skills and many more...</p>
-                </div>
-                <div class="row">
-                    <!-- item-1  -->
-                    <div class="col-xl-4 col-md-6">
-                        <div class="services-items">
-                            <span>
-                                <i class="fab fa-react"></i>
-                            </span>
-                            <h4>React Development</h4>
-                            <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, totam amet ipsa quisquam facilis</p> -->
-                        </div>
-                    </div>
-                    <!-- item 2 -->
-                    <div class="col-xl-4 col-md-6">
-                        <div class="services-items">
-                            <span>
-                                <i class="fab fa-js-square"></i>
-                            </span>
-                            <h4>JavaScript Development</h4>
-                            <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, totam amet ipsa quisquam facilis</p> -->
-                        </div>
-                    </div>
-                    <!-- item 3 -->
-                    <div class="col-xl-4 col-md-6">
-                        <div class="services-items">
-                            <span>
-                                <i class="fab fa-wordpress"></i>
-                            </span>
-                            <h4>WordPress Development</h4>
-                            <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, totam amet ipsa quisquam facilis</p> -->
-                        </div>
-                    </div>
-                    <!-- item 4 -->
-                    <div class="col-xl-4 col-md-6">
-                        <div class="services-items">
-                            <span>
-                                <i class="fas fa-server"></i>
-                            </span>
-                            <h4>Rest Api Integration</h4>
-                            <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, totam amet ipsa quisquam facilis</p> -->
-                        </div>
-                    </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
                     
-                    <!-- item 5  -->
-                    <div class="col-xl-4 col-md-6">
-                        <div class="services-items">
-                            <span><i class="fas fa-desktop"></i></span>
-                            <h4>Custom Design From Scratch</h4>
-                            <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, totam amet ipsa quisquam facilis</p> -->
+                    <div class="project-card neon-glow-card border-2 border-blue-500 bg-brand-card flex flex-col justify-between" data-category="wordpress-headless">
+                        <div>
+                            <div class="bg-blue-950/60 p-3 sm:p-4 border-b border-blue-800/80 flex justify-between items-center font-mono text-[10px] sm:text-xs gap-2">
+                                <span class="text-blue-400 font-bold truncate"><i class="fas fa-star mr-1 text-yellow-400 animate-pulse"></i> FEATURED PLUGIN</span>
+                                <span class="px-2 py-0.5 bg-blue-900/50 text-blue-300 border border-blue-700 text-[8px] sm:text-[10px] whitespace-nowrap">WP Org</span>
+                            </div>
+                            <div class="p-4 sm:p-6 space-y-3">
+                                <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight">VRockAddons for Elementor</h3>
+                                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                                    High-performance responsive dynamic addon widgets engineered for Elementor page builders. Delivers super-light, responsive elements with optimized PHP structures and clean custom code blocks.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-4 sm:p-6 pt-0 mt-auto flex flex-col sm:flex-row justify-between sm:items-center border-t border-slate-900/50 pt-4 font-mono text-[10px] sm:text-xs gap-2">
+                            <span class="text-slate-500 truncate">wordpress.org/plugins</span>
+                            <a href="https://wordpress.org/plugins/vrockaddons-for-elementor/" target="_blank" class="font-bold text-blue-400 hover:text-white transition inline-flex items-center gap-1 whitespace-nowrap">
+                                VIEW PLUGIN &rarr;
+                            </a>
                         </div>
                     </div>
-                    <!-- item 6  -->
-                    <div class="col-xl-4 col-md-6">
-                        <div class="services-items">
-                            <span>
-                                <i class="fas fa-database"></i>
-                            </span>
-                            <h4>
-                                Database & Server Management
-                            </h4>
-                            <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, totam amet ipsa quisquam facilis</p> -->
+
+                    <div class="project-card neon-glow-card border-2 border-slate-800 bg-brand-card flex flex-col justify-between" data-category="react-next">
+                        <div>
+                            <div class="bg-slate-950/60 p-3 sm:p-4 border-b border-slate-800/80 flex justify-between items-center font-mono text-[10px] sm:text-xs gap-2">
+                                <span class="text-blue-400 truncate">E-COMMERCE SYSTEM</span>
+                                <span class="px-2 py-0.5 bg-blue-950/80 text-blue-400 border border-blue-900 text-[8px] sm:text-[10px] whitespace-nowrap">Next.js</span>
+                            </div>
+                            <div class="p-4 sm:p-6 space-y-3">
+                                <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight">EPC Tuning Shop</h3>
+                                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">High performance dynamic platform built for advanced automotive modifications. Built using hydration tuning methods and rapid inventory sync hooks.</p>
+                            </div>
+                        </div>
+                        <div class="p-4 sm:p-6 pt-0 mt-auto flex flex-col sm:flex-row justify-between sm:items-center border-t border-slate-900/50 pt-4 font-mono text-[10px] sm:text-xs gap-2">
+                            <span class="text-slate-500 truncate">epctuningshop.com</span>
+                            <a href="https://epctuningshop.com" target="_blank" class="font-bold text-blue-400 hover:text-white transition inline-flex items-center gap-1 whitespace-nowrap">
+                                LAUNCH &rarr;
+                            </a>
                         </div>
                     </div>
+
+                    <div class="project-card neon-glow-card border-2 border-slate-800 bg-brand-card flex flex-col justify-between" data-category="react-next">
+                        <div>
+                            <div class="bg-slate-950/60 p-3 sm:p-4 border-b border-slate-800/80 flex justify-between items-center font-mono text-[10px] sm:text-xs gap-2">
+                                <span class="text-blue-400 truncate">ENTERPRISE SYSTEM</span>
+                                <span class="px-2 py-0.5 bg-blue-950/80 text-blue-400 border border-blue-900 text-[8px] sm:text-[10px] whitespace-nowrap">Next.js</span>
+                            </div>
+                            <div class="p-4 sm:p-6 space-y-3">
+                                <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight">Climate Pursuits</h3>
+                                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">Secure environmental metrics compilation maps. Employs lightweight static component trees and dynamic localized metric visual data tracks.</p>
+                            </div>
+                        </div>
+                        <div class="p-4 sm:p-6 pt-0 mt-auto flex flex-col sm:flex-row justify-between sm:items-center border-t border-slate-900/50 pt-4 font-mono text-[10px] sm:text-xs gap-2">
+                            <span class="text-slate-500 truncate">climatepursuits.com</span>
+                            <a href="https://climatepursuits.com" target="_blank" class="font-bold text-blue-400 hover:text-white transition inline-flex items-center gap-1 whitespace-nowrap">
+                                LAUNCH &rarr;
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card neon-glow-card border-2 border-slate-800 bg-brand-card flex flex-col justify-between" data-category="react-next">
+                        <div>
+                            <div class="bg-slate-950/60 p-3 sm:p-4 border-b border-slate-800/80 flex justify-between items-center font-mono text-[10px] sm:text-xs gap-2">
+                                <span class="text-blue-400 truncate">GAMING SYSTEM</span>
+                                <span class="px-2 py-0.5 bg-blue-950/80 text-blue-400 border border-blue-900 text-[8px] sm:text-[10px] whitespace-nowrap">React</span>
+                            </div>
+                            <div class="p-4 sm:p-6 space-y-3">
+                                <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight">Vibe Gaming BD</h3>
+                                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">High-frame-rate responsive catalog with optimized click tracking logic and payment integrations designed to operate without transaction overheads.</p>
+                            </div>
+                        </div>
+                        <div class="p-4 sm:p-6 pt-0 mt-auto flex flex-col sm:flex-row justify-between sm:items-center border-t border-slate-900/50 pt-4 font-mono text-[10px] sm:text-xs gap-2">
+                            <span class="text-slate-500 truncate">vibegaming.com.bd</span>
+                            <a href="https://vibegaming.com.bd" target="_blank" class="font-bold text-blue-400 hover:text-white transition inline-flex items-center gap-1 whitespace-nowrap">
+                                LAUNCH &rarr;
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card neon-glow-card border-2 border-slate-800 bg-brand-card flex flex-col justify-between" data-category="wordpress-headless">
+                        <div>
+                            <div class="bg-slate-950/60 p-3 sm:p-4 border-b border-slate-800/80 flex justify-between items-center font-mono text-[10px] sm:text-xs gap-2">
+                                <span class="text-purple-400 truncate">BIOTECH ECOM</span>
+                                <span class="px-2 py-0.5 bg-purple-950/80 text-purple-400 border border-purple-900 text-[8px] sm:text-[10px] whitespace-nowrap">WordPress</span>
+                            </div>
+                            <div class="p-4 sm:p-6 space-y-3">
+                                <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight">Offline Peptides</h3>
+                                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">Secure pharmaceutical products catalog structure. Tuned with strict secure validation processes and compliant order management pathways.</p>
+                            </div>
+                        </div>
+                        <div class="p-4 sm:p-6 pt-0 mt-auto flex flex-col sm:flex-row justify-between sm:items-center border-t border-slate-900/50 pt-4 font-mono text-[10px] sm:text-xs gap-2">
+                            <span class="text-slate-500 truncate">offlinepeptides.com</span>
+                            <a href="https://offlinepeptides.com" target="_blank" class="font-bold text-blue-400 hover:text-white transition inline-flex items-center gap-1 whitespace-nowrap">
+                                LAUNCH &rarr;
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card neon-glow-card border-2 border-slate-800 bg-brand-card flex flex-col justify-between" data-category="wordpress-headless">
+                        <div>
+                            <div class="bg-slate-950/60 p-3 sm:p-4 border-b border-slate-800/80 flex justify-between items-center font-mono text-[10px] sm:text-xs gap-2">
+                                <span class="text-purple-400 truncate">HEALTH PLATFORM</span>
+                                <span class="px-2 py-0.5 bg-purple-950/80 text-purple-400 border border-purple-900 text-[8px] sm:text-[10px] whitespace-nowrap">WordPress</span>
+                            </div>
+                            <div class="p-4 sm:p-6 space-y-3">
+                                <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight">Ascend Bio Health</h3>
+                                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">Comprehensive speed overhaul for intricate wellness frameworks. Restructured database storage variables and enabled system edge caching maps.</p>
+                            </div>
+                        </div>
+                        <div class="p-4 sm:p-6 pt-0 mt-auto flex flex-col sm:flex-row justify-between sm:items-center border-t border-slate-900/50 pt-4 font-mono text-[10px] sm:text-xs gap-2">
+                            <span class="text-slate-500 truncate">ascendbio.health</span>
+                            <a href="https://ascendbio.health" target="_blank" class="font-bold text-blue-400 hover:text-white transition inline-flex items-center gap-1 whitespace-nowrap">
+                                LAUNCH &rarr;
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card neon-glow-card border-2 border-slate-800 bg-brand-card flex flex-col justify-between" data-category="wordpress-headless">
+                        <div>
+                            <div class="bg-slate-950/60 p-3 sm:p-4 border-b border-slate-800/80 flex justify-between items-center font-mono text-[10px] sm:text-xs gap-2">
+                                <span class="text-purple-400 truncate">DECOUPLED CMS</span>
+                                <span class="px-2 py-0.5 bg-purple-950/80 text-purple-400 border border-purple-900 text-[8px] sm:text-[10px] whitespace-nowrap">Headless</span>
+                            </div>
+                            <div class="p-4 sm:p-6 space-y-3">
+                                <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight">Piler Global Hub</h3>
+                                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">Pioneered custom headless integrations linking central WordPress instances with remote React applications for seamless enterprise product operations.</p>
+                            </div>
+                        </div>
+                        <div class="p-4 sm:p-6 pt-0 mt-auto flex flex-col sm:flex-row justify-between sm:items-center border-t border-slate-900/50 pt-4 font-mono text-[10px] sm:text-xs gap-2">
+                            <span class="text-slate-500 truncate">pilarglobal.com</span>
+                            <a href="https://pilarglobal.com" target="_blank" class="font-bold text-blue-400 hover:text-white transition inline-flex items-center gap-1 whitespace-nowrap">
+                                LAUNCH &rarr;
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card neon-glow-card border-2 border-slate-800 bg-brand-card flex flex-col justify-between" data-category="ml-ai">
+                        <div>
+                            <div class="bg-slate-950/60 p-3 sm:p-4 border-b border-slate-800/80 flex justify-between items-center font-mono text-[10px] sm:text-xs gap-2">
+                                <span class="text-emerald-400 truncate">INTELLIGENT ROUTING</span>
+                                <span class="px-2 py-0.5 bg-emerald-950/80 text-emerald-400 border border-emerald-900 text-[8px] sm:text-[10px] whitespace-nowrap">ML Engine</span>
+                            </div>
+                            <div class="p-4 sm:p-6 space-y-3">
+                                <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight">Autonomous Lead Classifier</h3>
+                                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">Constructed custom classifier loops mapping remote query tokens to dedicated CRM routing arrays instantly upon execution.</p>
+                            </div>
+                        </div>
+                        <div class="p-4 sm:p-6 pt-0 mt-auto flex justify-between items-center border-t border-slate-900/50 pt-4 font-mono text-[10px] sm:text-xs">
+                            <span class="text-slate-500 truncate pr-2">Internal ML Engine</span>
+                            <span class="font-bold text-slate-600">COMPILED</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card neon-glow-card border-2 border-slate-800 bg-brand-card flex flex-col justify-between" data-category="ml-ai">
+                        <div>
+                            <div class="bg-slate-950/60 p-3 sm:p-4 border-b border-slate-800/80 flex justify-between items-center font-mono text-[10px] sm:text-xs gap-2">
+                                <span class="text-emerald-400 truncate">INTELLIGENT AGENT</span>
+                                <span class="px-2 py-0.5 bg-emerald-950/80 text-emerald-400 border border-emerald-900 text-[8px] sm:text-[10px] whitespace-nowrap">AI Loop</span>
+                            </div>
+                            <div class="p-4 sm:p-6 space-y-3">
+                                <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight">Automated Content Engine</h3>
+                                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">Integrated LLM generative loops with inventory databases, programmatically crafting search engine friendly product descriptions on item launch.</p>
+                            </div>
+                        </div>
+                        <div class="p-4 sm:p-6 pt-0 mt-auto flex justify-between items-center border-t border-slate-900/50 pt-4 font-mono text-[10px] sm:text-xs">
+                            <span class="text-slate-500 truncate pr-2">Autonomous Workflow</span>
+                            <span class="font-bold text-slate-600">COMPILED</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card neon-glow-card border-2 border-slate-800 bg-brand-card flex flex-col justify-between" data-category="ml-ai">
+                        <div>
+                            <div class="bg-slate-950/60 p-3 sm:p-4 border-b border-slate-800/80 flex justify-between items-center font-mono text-[10px] sm:text-xs gap-2">
+                                <span class="text-emerald-400 truncate">PREDICTIVE ANALYTICS</span>
+                                <span class="px-2 py-0.5 bg-emerald-950/80 text-emerald-400 border border-emerald-900 text-[8px] sm:text-[10px] whitespace-nowrap">ML Model</span>
+                            </div>
+                            <div class="p-4 sm:p-6 space-y-3">
+                                <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight">Predictive Stock Modeler</h3>
+                                <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">Deployed mathematical regression modules mapping inventory consumption trajectories, feeding warning variables automatically to server scripts.</p>
+                            </div>
+                        </div>
+                        <div class="p-4 sm:p-6 pt-0 mt-auto flex justify-between items-center border-t border-slate-900/50 pt-4 font-mono text-[10px] sm:text-xs">
+                            <span class="text-slate-500 truncate pr-2">Private Data Pipeline</span>
+                            <span class="font-bold text-slate-600">COMPILED</span>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="cta" data-parallax="scroll" data-image-src="./assets/images/services/services-bg.jpg">
-            <div class="container">
-                <div class="row">
-                    <div class="cta-text">
-                        <h2>Don't Think <span>Begin it today</span></h2>
-                        <div class="btn-sec">
-                            <a href="mailto: awalbashar194@gmail.com" class="btn-1">Contact Me</a>
-                        </div>
-                    </div>
+        <section id="contact" class="px-4 sm:px-6 pb-24 pt-8 w-full relative z-20">
+            <div class="max-w-7xl mx-auto border-2 border-slate-800 bg-gradient-to-r from-brand-card via-brand-card to-blue-950/40 p-6 sm:p-8 md:p-12 shadow-[8px_8px_0px_#3B82F6] flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8">
+                <div class="space-y-3 text-center md:text-left">
+                    <span class="text-xs font-mono text-blue-500 tracking-wider uppercase block">// INITIATE TUNING RUN</span>
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-white leading-tight">Secure your high-performance systems</h3>
+                    <p class="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto md:mx-0">Let's compile secure code frameworks, deploy localized AI models, and optimize page performance maps for optimal growth scaling.</p>
+                </div>
+                <div class="shrink-0 w-full md:w-auto">
+                    <a href="mailto:awalbashar194@gmail.com" class="bg-blue-600 hover:bg-blue-700 text-white font-mono text-[10px] sm:text-xs font-bold tracking-widest px-6 sm:px-8 py-4 border-2 border-blue-600 hover:shadow-[4px_4px_0px_rgba(255,255,255,0.9)] transition-all duration-200 block text-center whitespace-nowrap">
+                        <i class="fas fa-envelope mr-2"></i> CONNECT_TUNING_NODE
+                    </a>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- services section end  -->
+        </section>
 
-    <!-- portfolio section start  -->
-    <section class="portfolio padding bg1" data-scroll-index="3">
-        <div class="container">
-            <div class="title">
-                <h2>
-                    Recent <span>Works</span>
-                    <span class="circle"></span>
-                </h2>
-                <p>Here I provide my personal project work....</p>
+        <footer class="border-t border-slate-800 bg-slate-950 py-10 px-4 sm:px-6 text-center md:text-left text-[11px] font-mono text-slate-500 mt-auto relative z-20">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 sm:gap-6">
+                <div class="flex flex-col sm:flex-row items-center gap-1.5 sm:gap-2">
+                    <span class="text-slate-400">
+                        &copy; <span id="current-year"></span> MD. AWAL BASHAR.
+                    </span>
+                    <span class="hidden sm:inline text-slate-700">|</span>
+                    <span class="uppercase tracking-widest text-[9px] sm:text-[10px]">All Rights Reserved.</span>
+                </div>
+
+                <div class="flex items-center justify-center flex-wrap gap-x-6 gap-y-2 text-slate-400">
+                    <a href="https://github.com/bashar0091" target="_blank" class="hover:text-blue-500 transition-colors duration-200 uppercase tracking-widest text-[9px] sm:text-[10px] font-bold">Github</a>
+                    <a href="https://linkedin.com/in/awalbashar" target="_blank" class="hover:text-blue-500 transition-colors duration-200 uppercase tracking-widest text-[9px] sm:text-[10px] font-bold">LinkedIn</a>
+                    <a href="mailto:awalbashar194@gmail.com" class="hover:text-blue-500 transition-colors duration-200 uppercase tracking-widest text-[9px] sm:text-[10px] font-bold">Contact</a>
+                </div>
             </div>
-            <div class="row portolio-list">
-                <!-- item 1 -->
-                <div class="col-xl-4 col-md-6 list-item">
-                    <div class="portfolio-item">
-                       <!-- portfolio img  -->
-                        <div class="portfolio-thumbnail">
-                            <a href="javascript:void(0)">
-                                <img src="./assets/images/portfolio/bbcivil.jpg" alt="bbcivil">
-                            </a>
-                        </div>
-                        <!-- portfolio body  -->
-                        <div class="portfolio-content">
-                            <div class="portfolio-action">
-                                <div class="portfolio-category">
-                                    <span><i class="fas fa-bookmark"></i></span>
-                                    <span>WordPress</span>
-                                </div>
-                                <!-- portfolio viem -->
-                                <div class="portfolio-show">
-                                    <nav>
-                                        <ul>
-                                            <li>
-                                                <a href="https://i.ibb.co/87NdGWj/Screenshot-2022-11-19-at-12-54-26-BB-Civil-Home.png" data-lightbox="image-1"><i class="fas fa-search-plus"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="https://bbcivil.com.au/" target="_blank"><i class="fas fa-link"></i></a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                            <h4>BB CIVIL</h4>
-                        </div>
-                    </div>
-                </div>
+        </footer>
 
-                <!-- item 2 -->
-                <div class="col-xl-4 col-md-6 list-item">
-                    <div class="portfolio-item">
-                       <!-- portfolio img  -->
-                        <div class="portfolio-thumbnail">
-                            <a href="javascript:void(0)">
-                                <img src="./assets/images/portfolio/ipbc.jpg" alt="ipbc">
-                            </a>
-                        </div>
-                        <!-- portfolio body  -->
-                        <div class="portfolio-content">
-                            <div class="portfolio-action">
-                                <div class="portfolio-category">
-                                    <span><i class="fas fa-bookmark"></i></span>
-                                    <span>WordPress</span>
-                                </div>
-                                <!-- portfolio viem -->
-                                <div class="portfolio-show">
-                                    <nav>
-                                        <ul>
-                                            <li>
-                                                <a href="https://i.ibb.co/zGwJXd2/Screenshot-2022-11-19-at-13-07-46-IP-Business-Consulting-IBPC-Home.png" data-lightbox="image-2"><i class="fas fa-search-plus"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="https://ipbusinessconsulting.com.au/" target="_blank"><i class="fas fa-link"></i></a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                            <h4>IP Business Consulting</h4>
-                        </div>
-                    </div>
-                </div>
+    </div>
 
-                <!-- item 3 -->
-                <div class="col-xl-4 col-md-6 list-item">
-                    <div class="portfolio-item">
-                       <!-- portfolio img  -->
-                        <div class="portfolio-thumbnail">
-                            <a href="javascript:void(0)">
-                                <img src="./assets/images/portfolio/happyfoodtruck.jpg" alt="ipbc">
-                            </a>
-                        </div>
-                        <!-- portfolio body  -->
-                        <div class="portfolio-content">
-                            <div class="portfolio-action">
-                                <div class="portfolio-category">
-                                    <span><i class="fas fa-bookmark"></i></span>
-                                    <span>WordPress</span>
-                                </div>
-                                <!-- portfolio viem -->
-                                <div class="portfolio-show">
-                                    <nav>
-                                        <ul>
-                                            <li>
-                                                <a href="https://i.ibb.co/sVY8ngB/Screenshot-2022-11-19-at-13-15-22-happyfoodtruck-se.png" data-lightbox="image-2"><i class="fas fa-search-plus"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="https://www.happyfoodtruck.se/" target="_blank"><i class="fas fa-link"></i></a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                            <h4>Happy Foodtruck</h4>
-                        </div>
-                    </div>
-                </div>
+    <!-- MAIN JAVASCRIPT -->
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // 1. DYNAMIC NEURAL CANVAS ANIMATION
+        const canvas = document.getElementById('neuralCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const maxParticles = 65;
 
-                <!-- item 4 -->
-                <div class="col-xl-4 col-md-6 list-item">
-                    <div class="portfolio-item">
-                       <!-- portfolio img  -->
-                        <div class="portfolio-thumbnail">
-                            <a href="javascript:void(0)">
-                                <img src="./assets/images/portfolio/tekavenir.jpg" alt="ipbc">
-                            </a>
-                        </div>
-                        <!-- portfolio body  -->
-                        <div class="portfolio-content">
-                            <div class="portfolio-action">
-                                <div class="portfolio-category">
-                                    <span><i class="fas fa-bookmark"></i></span>
-                                    <span>WordPress</span>
-                                </div>
-                                <!-- portfolio viem -->
-                                <div class="portfolio-show">
-                                    <nav>
-                                        <ul>
-                                            <li>
-                                                <a href="https://i.ibb.co/K01byxP/Screenshot-2022-11-19-at-13-20-05-Tek-Avenir-Group-Innovating-Forward.png" data-lightbox="image-2"><i class="fas fa-search-plus"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="https://tekavenir.com/" target="_blank"><i class="fas fa-link"></i></a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                            <h4>Tekavenir</h4>
-                        </div>
-                    </div>
-                </div>
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
-                <!-- item 6 -->
-                <div class="col-xl-4 col-md-6 list-item">
-                    <div class="portfolio-item">
-                       <!-- portfolio img  -->
-                        <div class="portfolio-thumbnail">
-                            <a href="javascript:void(0)">
-                                <img src="./assets/images/portfolio/flourishsupport.jpg" alt="flourishsupport">
-                            </a>
-                        </div>
-                        <!-- portfolio body  -->
-                        <div class="portfolio-content">
-                            <div class="portfolio-action">
-                                <div class="portfolio-category">
-                                    <span><i class="fas fa-bookmark"></i></span>
-                                    <span>WordPress</span>
-                                </div>
-                                <!-- portfolio viem -->
-                                <div class="portfolio-show">
-                                    <nav>
-                                        <ul>
-                                            <li>
-                                                <a href="https://i.ibb.co/fD3ysTX/Screenshot-2022-11-20-at-17-41-01-Disability-Care-Flourish-Support-Services.png" data-lightbox="image-2"><i class="fas fa-search-plus"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="https://flourishsupport.marketingpages.com.au/" target="_blank"><i class="fas fa-link"></i></a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                            <h4>Flourish Support Services</h4>
-                        </div>
-                    </div>
-                </div>
+        let mouse = { x: null, y: null, radius: 140 };
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.baseVx = (Math.random() - 0.5) * 0.45;
+                this.baseVy = (Math.random() - 0.5) * 0.45;
+                this.vx = this.baseVx;
+                this.vy = this.baseVy;
+                this.radius = Math.random() * 2 + 1;
+            }
+            update() {
+                if (mouse.x !== null && mouse.y !== null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < mouse.radius) {
+                        let force = (mouse.radius - distance) / mouse.radius;
+                        this.vx -= (dx / distance) * force * 0.6;
+                        this.vy -= (dy / distance) * force * 0.6;
+                    } else {
+                        this.vx += (this.baseVx - this.vx) * 0.05;
+                        this.vy += (this.baseVy - this.vy) * 0.05;
+                    }
+                } else {
+                    this.vx += (this.baseVx - this.vx) * 0.05;
+                    this.vy += (this.baseVy - this.vy) * 0.05;
+                }
+
+                const maxSpeed = 2.0;
+                let currentSpeed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                if (currentSpeed > maxSpeed) {
+                    this.vx = (this.vx / currentSpeed) * maxSpeed;
+                    this.vy = (this.vy / currentSpeed) * maxSpeed;
+                }
+
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+                if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = '#3B82F6';
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < maxParticles; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 125) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(59, 130, 246, ${(1 - dist / 125) * 0.25})`;
+                        ctx.lineWidth = 0.65;
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // 2. HERO TERMINAL DYNAMIC GPU LOGS MONITOR
+        const termLogsEl = document.getElementById('terminal-gpu-logs');
+        let epochCounter = 1;
+        
+        function streamLiveGPULogs() {
+            if(!termLogsEl) return;
+            const loss = (0.09 - (epochCounter * 0.00035) + (Math.random() * 0.002)).toFixed(5);
+            const accuracy = Math.min(0.92 + (epochCounter * 0.0007) + (Math.random() * 0.001), 0.998).toFixed(4);
+            const tokensSec = (Math.random() * 200 + 1100).toFixed(0);
+            
+            const logLine = document.createElement('div');
+            logLine.className = 'font-mono text-[9px] sm:text-[10px] text-indigo-300 opacity-90 transition-opacity duration-300 flex justify-between tracking-tighter border-b border-slate-900 pb-0.5 gap-2';
+            logLine.innerHTML = `
+                <span class="truncate">[EP_${epochCounter.toString().padStart(3, '0')}/150] loss: <span class="text-rose-400">${loss}</span> acc: <span class="text-emerald-400">${accuracy}</span></span>
+                <span class="text-slate-500 shrink-0">${tokensSec} t/s</span>
+            `;
+            
+            termLogsEl.appendChild(logLine);
+            termLogsEl.scrollTop = termLogsEl.scrollHeight;
+
+            if (termLogsEl.children.length > 7) {
+                termLogsEl.removeChild(termLogsEl.firstChild);
+            }
+
+            epochCounter = (epochCounter % 150) + 1;
+            setTimeout(streamLiveGPULogs, Math.random() * 800 + 600);
+        }
+        streamLiveGPULogs();
+
+        // 3. STABLE TEXT CAROUSEL ENGINE
+        const professions = [
+            "Full Stack Engineer",
+            "Next.js & React Builder",
+            "Headless WP Architect",
+            "AI Automation Specialist",
+            "Core Web Vitals Expert"
+        ];
+        let profIndex = 0;
+        const carouselTextEl = document.getElementById('carousel-text');
+
+        function rotateCarouselText() {
+            if(!carouselTextEl) return;
+            carouselTextEl.style.transform = 'translateY(-100%)';
+            carouselTextEl.style.opacity = '0';
+            
+            setTimeout(() => {
+                profIndex = (profIndex + 1) % professions.length;
+                carouselTextEl.textContent = professions[profIndex];
+                carouselTextEl.style.transition = 'none';
+                carouselTextEl.style.transform = 'translateY(100%)';
+                carouselTextEl.offsetHeight;
                 
-                <!-- item 6 -->
-                <div class="col-xl-4 col-md-6 list-item">
-                    <div class="portfolio-item">
-                       <!-- portfolio img  -->
-                        <div class="portfolio-thumbnail">
-                            <a href="javascript:void(0)">
-                                <img src="./assets/images/portfolio/hydradynamics.jpg" alt="ipbc">
-                            </a>
-                        </div>
-                        <!-- portfolio body  -->
-                        <div class="portfolio-content">
-                            <div class="portfolio-action">
-                                <div class="portfolio-category">
-                                    <span><i class="fas fa-bookmark"></i></span>
-                                    <span>WordPress</span>
-                                </div>
-                                <!-- portfolio viem -->
-                                <div class="portfolio-show">
-                                    <nav>
-                                        <ul>
-                                            <li>
-                                                <a href="https://i.ibb.co/DtzXz1K/Screenshot-2022-11-19-at-13-35-25-Hydra-Dynamics-Water-Wastewater-Treatment-Services.png" data-lightbox="image-2"><i class="fas fa-search-plus"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="https://hydradynamics.com.au/" target="_blank"><i class="fas fa-link"></i></a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                            <h4>Hydra Dynamics</h4>
-                        </div>
-                    </div>
-                </div>
+                carouselTextEl.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease';
+                carouselTextEl.style.transform = 'translateY(0)';
+                carouselTextEl.style.opacity = '1';
+            }, 600);
+        }
+        setInterval(rotateCarouselText, 3500);
+
+        // 4. INTERACTIVE MODEL PLAYGROUND / SANDBOX ENGINE
+        const taskButtons = document.querySelectorAll('[data-sandbox-task]');
+        const executeBtn = document.getElementById('execute-sandbox-btn');
+        const screenLogsEl = document.getElementById('sandbox-screen-logs');
+        const tempSlider = document.getElementById('temp-slider');
+        const tempValEl = document.getElementById('temp-val');
+        const latencyMeterEl = document.getElementById('sandbox-latency-meter');
+        
+        let selectedTask = "lcp";
+
+        if(tempSlider && tempValEl) {
+            tempSlider.addEventListener('input', (e) => {
+                tempValEl.textContent = parseFloat(e.target.value).toFixed(2);
+            });
+        }
+
+        taskButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                taskButtons.forEach(b => {
+                    b.classList.remove('border-blue-500/80', 'bg-blue-950/20', 'text-white');
+                    b.classList.add('border-slate-800', 'bg-slate-900/40', 'text-slate-400');
+                    b.querySelector('i').classList.remove('text-blue-400');
+                    b.querySelector('i').classList.add('text-slate-500');
+                });
                 
-                <!-- item 7 -->
-                <div class="col-xl-4 col-md-6 list-item">
-                    <div class="portfolio-item">
-                       <!-- portfolio img  -->
-                        <div class="portfolio-thumbnail">
-                            <a href="javascript:void(0)">
-                                <img src="./assets/images/portfolio/cherishproperty.jpg" alt="cherishproperty">
-                            </a>
-                        </div>
-                        <!-- portfolio body  -->
-                        <div class="portfolio-content">
-                            <div class="portfolio-action">
-                                <div class="portfolio-category">
-                                    <span><i class="fas fa-bookmark"></i></span>
-                                    <span>WordPress</span>
-                                </div>
-                                <!-- portfolio viem -->
-                                <div class="portfolio-show">
-                                    <nav>
-                                        <ul>
-                                            <li>
-                                                <a href="/assets/images/portfolio/portfolio-full/ameltek.jpg" data-lightbox="image-2"><i class="fas fa-search-plus"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="https://cherishproperty.com.au/" target="_blank"><i class="fas fa-link"></i></a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                            <h4>Cherish Property</h4>
-                        </div>
-                    </div>
-                </div>
+                btn.classList.add('border-blue-500/80', 'bg-blue-950/20', 'text-white');
+                btn.classList.remove('border-slate-800', 'bg-slate-900/40', text-slate-400);
+                btn.querySelector('i').classList.add('text-blue-400');
+                btn.querySelector('i').classList.remove('text-slate-500');
+                
+                selectedTask = btn.getAttribute('data-sandbox-task');
+            });
+        });
 
-                <!-- item 5 -->
-                <div class="col-xl-4 col-md-6 list-item">
-                    <div class="portfolio-item">
-                       <!-- portfolio img  -->
-                        <div class="portfolio-thumbnail">
-                            <a href="javascript:void(0)">
-                                <img src="./assets/images/portfolio/mysteamtutor.jpg" alt="ipbc">
-                            </a>
-                        </div>
-                        <!-- portfolio body  -->
-                        <div class="portfolio-content">
-                            <div class="portfolio-action">
-                                <div class="portfolio-category">
-                                    <span><i class="fas fa-bookmark"></i></span>
-                                    <span>WordPress</span>
-                                </div>
-                                <!-- portfolio viem -->
-                                <div class="portfolio-show">
-                                    <nav>
-                                        <ul>
-                                            <li>
-                                                <a href="https://i.ibb.co/C5YvsHx/Screenshot-2022-11-19-at-13-27-57-Mysteamtutor-My-Steam-Tutor.png" data-lightbox="image-2"><i class="fas fa-search-plus"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="https://www.mysteamtutor.com/" target="_blank"><i class="fas fa-link"></i></a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                            <h4>MysteamTutor</h4>
-                        </div>
-                    </div>
-                </div>
+        const sandboxSimulations = {
+            lcp: [
+                { text: "> Loading LCP optimization script model checkpoint...", color: "text-blue-400" },
+                { text: "> Setting up server caching layers on Cloudflare CDN routing routes...", color: "text-slate-400" },
+                { text: "> Processing asset compression filters for JS/CSS hydration trees...", color: "text-slate-400" },
+                { text: "> Executing live lighthouse simulation metric sweep... calculating payload indexes...", color: "text-amber-400" },
+                { text: "> SUCCESS: Largest Contentful Paint computed: 0.81s (LCP score: 99%)", color: "text-emerald-400" },
+                { text: "> DEPLOYED: New optimized caching maps flashed on production cluster.", color: "text-blue-400" }
+            ],
+            classify: [
+                { text: "> Connecting database live feed vector index nodes...", color: "text-blue-400" },
+                { text: "> Vectorizing new client lead inquiries tokens via BERT-embed models...", color: "text-slate-400" },
+                { text: "> Initiating semantic classification mapping matrix sweep...", color: "text-slate-400" },
+                { text: "> Epoch processing logic checking priority thresholds and category weights...", color: "text-amber-400" },
+                { text: "> CLASSIFIED: Lead id_9043 assigned to 'High Value Service Tier' - Routing done.", color: "text-emerald-400" },
+                { text: "> AGENT ACTION: Initiated CRM Slack alerting workflow channel updates.", color: "text-blue-400" }
+            ],
+            content: [
+                { text: "> Fetching unsynchronized item catalog entries from WooCommerce index maps...", color: "text-blue-400" },
+                { text: "> Mapping prompt template matrix constraints to context window arrays...", color: "text-slate-400" },
+                { text: "> Processing weights inference at system checkpoint parameters...", color: "text-amber-400" },
+                { text: "> Writing generated description text outputs programmatically...", color: "text-slate-400" },
+                { text: "> SUCCESS: Styled product summary output generated with 99.4% SEO scoring.", color: "text-emerald-400" },
+                { text: "> SYNC: WooCommerce item updated with generated model descriptions.", color: "text-blue-400" }
+            ]
+        };
 
-                <!-- item 5 -->
-                <div class="col-xl-4 col-md-6 list-item">
-                    <div class="portfolio-item">
-                       <!-- portfolio img  -->
-                        <div class="portfolio-thumbnail">
-                            <a href="javascript:void(0)">
-                                <img src="./assets/images/portfolio/ameltek.jpg" alt="ipbc">
-                            </a>
-                        </div>
-                        <!-- portfolio body  -->
-                        <div class="portfolio-content">
-                            <div class="portfolio-action">
-                                <div class="portfolio-category">
-                                    <span><i class="fas fa-bookmark"></i></span>
-                                    <span>WordPress</span>
-                                </div>
-                                <!-- portfolio viem -->
-                                <div class="portfolio-show">
-                                    <nav>
-                                        <ul>
-                                            <li>
-                                                <a href="/assets/images/portfolio/portfolio-full/ameltek.jpg" data-lightbox="image-2"><i class="fas fa-search-plus"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="https://www.ameltek.com/" target="_blank"><i class="fas fa-link"></i></a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                            <h4>Ameltek Inc</h4>
-                        </div>
-                    </div>
-                </div>
+        let isRunningInference = false;
 
-                <!-- item 5 -->
-                <div class="col-xl-4 col-md-6 list-item">
-                    <div class="portfolio-item">
-                       <!-- portfolio img  -->
-                        <div class="portfolio-thumbnail">
-                            <a href="javascript:void(0)">
-                                <img src="./assets/images/portfolio/netacare.jpg" alt="ipbc">
-                            </a>
-                        </div>
-                        <!-- portfolio body  -->
-                        <div class="portfolio-content">
-                            <div class="portfolio-action">
-                                <div class="portfolio-category">
-                                    <span><i class="fas fa-bookmark"></i></span>
-                                    <span>WordPress</span>
-                                </div>
-                                <!-- portfolio viem -->
-                                <div class="portfolio-show">
-                                    <nav>
-                                        <ul>
-                                            <li>
-                                                <a href="/assets/images/portfolio/portfolio-full/netacare.jpg" data-lightbox="image-2"><i class="fas fa-search-plus"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="https://www.netacare.com.au/" target="_blank"><i class="fas fa-link"></i></a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                            <h4>Neta Care</h4>
-                        </div>
-                    </div>
-                </div>
+        if(executeBtn) {
+            executeBtn.addEventListener('click', () => {
+                if (isRunningInference) return;
+                isRunningInference = true;
+                executeBtn.disabled = true;
+                executeBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                
+                screenLogsEl.innerHTML = `
+                    <div class="text-blue-400 tracking-wider font-bold animate-pulse">// INITIALIZING INFERENCE SEQUENCE...</div>
+                `;
+                latencyMeterEl.textContent = "COMPUTING TENSORS...";
+                latencyMeterEl.className = "text-amber-400 font-bold animate-pulse text-[10px] sm:text-xs";
 
-                <!-- item 5 -->
-                <div class="col-xl-4 col-md-6 list-item">
-                    <div class="portfolio-item">
-                       <!-- portfolio img  -->
-                        <div class="portfolio-thumbnail">
-                            <a href="javascript:void(0)">
-                                <img src="./assets/images/portfolio/ndisnetacare.jpg" alt="ipbc">
-                            </a>
-                        </div>
-                        <!-- portfolio body  -->
-                        <div class="portfolio-content">
-                            <div class="portfolio-action">
-                                <div class="portfolio-category">
-                                    <span><i class="fas fa-bookmark"></i></span>
-                                    <span>WordPress</span>
-                                </div>
-                                <!-- portfolio viem -->
-                                <div class="portfolio-show">
-                                    <nav>
-                                        <ul>
-                                            <li>
-                                                <a href="/assets/images/portfolio/portfolio-full/ndisnetacare.jpg" data-lightbox="image-2"><i class="fas fa-search-plus"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="https://www.ndis.netacare.com.au/" target="_blank"><i class="fas fa-link"></i></a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                            <h4>Ndis Neta Care</h4>
-                        </div>
-                    </div>
-                </div>
+                const steps = sandboxSimulations[selectedTask];
+                let currentStepIdx = 0;
 
-                <!-- item 5 -->
-                <div class="col-xl-4 col-md-6 list-item">
-                    <div class="portfolio-item">
-                       <!-- portfolio img  -->
-                        <div class="portfolio-thumbnail">
-                            <a href="javascript:void(0)">
-                                <img src="./assets/images/portfolio/agedcare.jpg" alt="agedcare">
-                            </a>
-                        </div>
-                        <!-- portfolio body  -->
-                        <div class="portfolio-content">
-                            <div class="portfolio-action">
-                                <div class="portfolio-category">
-                                    <span><i class="fas fa-bookmark"></i></span>
-                                    <span>WordPress</span>
-                                </div>
-                                <!-- portfolio viem -->
-                                <div class="portfolio-show">
-                                    <nav>
-                                        <ul>
-                                            <li>
-                                                <a href="/assets/images/portfolio/portfolio-full/agedcare.jpg" data-lightbox="image-2"><i class="fas fa-search-plus"></i></a>
-                                            </li>
-                                            <li>
-                                                <a href="https://www.agedcare.netacare.com.au/" target="_blank"><i class="fas fa-link"></i></a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                            <h4>Agedcare Neta Care</h4>
-                        </div>
-                    </div>
-                </div>
+                function runStep() {
+                    if (currentStepIdx < steps.length) {
+                        const step = steps[currentStepIdx];
+                        const row = document.createElement('div');
+                        row.className = `${step.color} tracking-tight font-mono transition-opacity duration-300 break-words`;
+                        row.textContent = step.text;
+                        screenLogsEl.appendChild(row);
+                        screenLogsEl.scrollTop = screenLogsEl.scrollHeight;
+                        
+                        currentStepIdx++;
+                        setTimeout(runStep, Math.random() * 700 + 400);
+                    } else {
+                        isRunningInference = false;
+                        executeBtn.disabled = false;
+                        executeBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                        
+                        const calculatedLatency = (Math.random() * 40 + 120).toFixed(0);
+                        latencyMeterEl.textContent = `COMPLETED IN ${calculatedLatency}ms`;
+                        latencyMeterEl.className = "text-emerald-400 font-bold text-[10px] sm:text-xs";
+                    }
+                }
+                setTimeout(runStep, 800);
+            });
+        }
 
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div id="pagination-container"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- portfolio section end  -->
+        // 5. DYNAMIC INTERACTIVE TAB FILTERING
+        const portfolioFilters = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
 
-    <!-- blog section start  -->
-    <!-- <section class="blog padding" data-scroll-index="4">
-        <div class="container">
-            <div class="title text-start">
-                <h2>
-                    Recent <span>Blogs</span>
-                    <span class="circle"></span>
-                </h2>
-                <p>Here I provide my personal information, skills and many more...</p>
-            </div>
-            <div class="row owl-carousel">
-                <div class="item">
-                    <div class="blog-item">
-                        <div class="blog-img">
-                            <a href="#">
-                            <img src="./assets/images/blog/blog-img-1.jpg" alt="Blog image" class="img-fluid">
-                            </a>
-                        </div>
-                        <div class="blog-body">
-                            <img src="./assets/images/blog/blog-author-img.jpg" alt="#" class="blog-author">
-                            <div class="blog-meta">
-                                <a href="#"><span><i class="far fa-user"></i>By Admin</span></a>
-                                <a href="javascript:void(0)" disable><span><i class="far fa-calendar-alt"></i>07 / 05 / 2021</span></a>
-                            </div>
-                            <h5>
-                                <a href="#">Top 10 html theme</a>
-                            </h5>
-                            <p>It is a long established fact that a reader will be distracted</p>
-                            <a href="#" class="blog-link">
-                                Read More <i class="fa fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="blog-item">
-                        <div class="blog-img">
-                            <a href="#">
-                            <img src="./assets/images/blog/blog-img-1.jpg" alt="Blog image" class="img-fluid">
-                            </a>
-                        </div>
-                        <div class="blog-body">
-                            <img src="./assets/images/blog/blog-author-img.jpg" alt="#" class="blog-author">
-                            <div class="blog-meta">
-                                <a href="#"><span><i class="far fa-user"></i>By Admin</span></a>
-                                <a href="javascript:void(0)" disable><span><i class="far fa-calendar-alt"></i>07 / 05 / 2021</span></a>
-                            </div>
-                            <h5>
-                                <a href="#">hi</a>
-                            </h5>
-                            <p>It is a long established fact that a reader will be distracted</p>
-                            <a href="#" class="blog-link">
-                                Read More <i class="fa fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="blog-item">
-                        <div class="blog-img">
-                            <a href="#">
-                            <img src="./assets/images/blog/blog-img-1.jpg" alt="Blog image" class="img-fluid">
-                            </a>
-                        </div>
-                        <div class="blog-body">
-                            <img src="./assets/images/blog/blog-author-img.jpg" alt="#" class="blog-author">
-                            <div class="blog-meta">
-                                <a href="#"><span><i class="far fa-user"></i>By Admin</span></a>
-                                <a href="javascript:void(0)" disable><span><i class="far fa-calendar-alt"></i>07 / 05 / 2021</span></a>
-                            </div>
-                            <h5>
-                                <a href="#">vou</a>
-                            </h5>
-                            <p>It is a long established fact that a reader will be distracted</p>
-                            <a href="#" class="blog-link">
-                                Read More <i class="fa fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="blog-item">
-                        <div class="blog-img">
-                            <a href="#">
-                            <img src="./assets/images/blog/blog-img-1.jpg" alt="Blog image" class="img-fluid">
-                            </a>
-                        </div>
-                        <div class="blog-body">
-                            <img src="./assets/images/blog/blog-author-img.jpg" alt="#" class="blog-author">
-                            <div class="blog-meta">
-                                <a href="#"><span><i class="far fa-user"></i>By Admin</span></a>
-                                <a href="javascript:void(0)" disable><span><i class="far fa-calendar-alt"></i>07 / 05 / 2021</span></a>
-                            </div>
-                            <h5>
-                                <a href="#"> How To Create A Design Brief</a>
-                            </h5>
-                            <p>It is a long established fact that a reader will be distracted</p>
-                            <a href="#" class="blog-link">
-                                Read More <i class="fa fa-arrow-right"></i>
-                            </a>
-                        </div>
-                        <div class="owl-nav">
-                            <button type="button" role="presentation" class="owl-prev disabled">hi</button>
-                            <button type="button" role="presentation" class="owl-next"><i class="fas fa-long-arrow-alt-right"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="blog-item">
-                        <div class="blog-img">
-                            <a href="#">
-                            <img src="./assets/images/blog/blog-img-1.jpg" alt="Blog image" class="img-fluid">
-                            </a>
-                        </div>
-                        <div class="blog-body">
-                            <img src="./assets/images/blog/blog-author-img.jpg" alt="#" class="blog-author">
-                            <div class="blog-meta">
-                                <a href="#"><span><i class="far fa-user"></i>By Admin</span></a>
-                                <a href="javascript:void(0)" disable><span><i class="far fa-calendar-alt"></i>07 / 05 / 2021</span></a>
-                            </div>
-                            <h5>
-                                <a href="#"> How To Create A Design Brief</a>
-                            </h5>
-                            <p>It is a long established fact that a reader will be distracted</p>
-                            <a href="#" class="blog-link">
-                                Read More <i class="fa fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="blog-item">
-                        <div class="blog-img">
-                            <a href="#">
-                            <img src="./assets/images/blog/blog-img-1.jpg" alt="Blog image" class="img-fluid">
-                            </a>
-                        </div>
-                        <div class="blog-body">
-                            <img src="./assets/images/blog/blog-author-img.jpg" alt="#" class="blog-author">
-                            <div class="blog-meta">
-                                <a href="#"><span><i class="far fa-user"></i>By Admin</span></a>
-                                <a href="javascript:void(0)" disable><span><i class="far fa-calendar-alt"></i>07 / 05 / 2021</span></a>
-                            </div>
-                            <h5>
-                                <a href="#"> How To Create A Design Brief</a>
-                            </h5>
-                            <p>It is a long established fact that a reader will be distracted</p>
-                            <a href="#" class="blog-link">
-                                Read More <i class="fa fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="blog-item">
-                        <div class="blog-img">
-                            <a href="#">
-                            <img src="./assets/images/blog/blog-img-1.jpg" alt="Blog image" class="img-fluid">
-                            </a>
-                        </div>
-                        <div class="blog-body">
-                            <img src="./assets/images/blog/blog-author-img.jpg" alt="#" class="blog-author">
-                            <div class="blog-meta">
-                                <a href="#"><span><i class="far fa-user"></i>By Admin</span></a>
-                                <a href="javascript:void(0)" disable><span><i class="far fa-calendar-alt"></i>07 / 05 / 2021</span></a>
-                            </div>
-                            <h5>
-                                <a href="#"> How To Create A Design Brief</a>
-                            </h5>
-                            <p>It is a long established fact that a reader will be distracted</p>
-                            <a href="#" class="blog-link">
-                                Read More <i class="fa fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="blog-item">
-                        <div class="blog-img">
-                            <a href="#">
-                            <img src="./assets/images/blog/blog-img-1.jpg" alt="Blog image" class="img-fluid">
-                            </a>
-                        </div>
-                        <div class="blog-body">
-                            <img src="./assets/images/blog/blog-author-img.jpg" alt="#" class="blog-author">
-                            <div class="blog-meta">
-                                <a href="#"><span><i class="far fa-user"></i>By Admin</span></a>
-                                <a href="javascript:void(0)" disable><span><i class="far fa-calendar-alt"></i>07 / 05 / 2021</span></a>
-                            </div>
-                            <h5>
-                                <a href="#"> How To Create A Design Brief</a>
-                            </h5>
-                            <p>It is a long established fact that a reader will be distracted</p>
-                            <a href="#" class="blog-link">
-                                Read More <i class="fa fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="blog-item">
-                        <div class="blog-img">
-                            <a href="#">
-                            <img src="./assets/images/blog/blog-img-1.jpg" alt="Blog image" class="img-fluid">
-                            </a>
-                        </div>
-                        <div class="blog-body">
-                            <img src="./assets/images/blog/blog-author-img.jpg" alt="#" class="blog-author">
-                            <div class="blog-meta">
-                                <a href="#"><span><i class="far fa-user"></i>By Admin</span></a>
-                                <a href="javascript:void(0)" disable><span><i class="far fa-calendar-alt"></i>07 / 05 / 2021</span></a>
-                            </div>
-                            <h5>
-                                <a href="#"> How To Create A Design Brief</a>
-                            </h5>
-                            <p>It is a long established fact that a reader will be distracted</p>
-                            <a href="#" class="blog-link">
-                                Read More <i class="fa fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-    <!-- blog section end  -->
+        portfolioFilters.forEach(button => {
+            button.addEventListener('click', () => {
+                portfolioFilters.forEach(btn => btn.classList.remove('tab-active'));
+                button.classList.add('tab-active');
 
-    <!-- contact section start  -->
-    <section class="contact padding pb-0 bg-white" data-scroll-index="5">
-        <div class="container">
-            <div class="title">
-                <h2>
-                    Get In <span>Touch</span>
-                    <span class="circle"></span>
-                </h2>
-                <p>Contact me anytime. This form is a Dynamic form. Easily send me message throgh this form. <br> Or email me <a href="mailto: awalbashar194@gmail.com" class="text-main ">awalbashar194@gmail.com</a></p>
-            </div>
-            <div class="contact-form">
-				<iframe src="https://contactform001.blogspot.com/" scrolling="no"></iframe>
-			</div>
-        </div>
-    </section>
-    <!-- contact section end  -->
-    
-    <!-- footer section start  -->
-    <section class="footer">
-        <div class="container">
-            <div class="copyright">
-                <p>&copy; <span id="year"></span> All Rights Reserved | <a href="https://github.com/bashar0091" target="_blank">Awal Bashar</a></p>
-            </div>
-        </div>
-    </section>
-    <!-- footer section end  -->
+                const filterValue = button.getAttribute('data-filter');
 
-    <!-- js file -->
-    <script src="assets/js/jquery-3.6.0.min.js"></script>
-    <script src="assets/js/headline.js"></script>
-    <script src="assets/js/scrollIt.min.js"></script>
-    <script src="assets/js/parallax.min.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/lightbox.min.js"></script>
-    <script src="assets/js/jquery.simplePagination.js"></script>
-    <script src="assets/js/app.js"></script>
+                projectCards.forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+
+                    if (filterValue === 'all' || cardCategory === filterValue) {
+                        card.style.display = 'flex';
+                        setTimeout(() => {
+                            card.classList.remove('fade-out');
+                            card.classList.add('fade-in');
+                        }, 50);
+                    } else {
+                        card.classList.remove('fade-in');
+                        card.classList.add('fade-out');
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 400); 
+                    }
+                });
+            });
+        });
+
+        // 6. INTERACTIVE COUNTING NUMBERS
+        const statCounters = document.querySelectorAll('[data-target]');
+        const counterObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = entry.target;
+                    const maxVal = parseInt(target.getAttribute('data-target'));
+                    let currentVal = 0;
+                    const step = Math.ceil(maxVal / 50); 
+                    
+                    const interval = setInterval(() => {
+                        currentVal += step;
+                        if (currentVal >= maxVal) {
+                            target.textContent = maxVal + (maxVal === 100 || maxVal === 99 ? '%' : '+');
+                            clearInterval(interval);
+                        } else {
+                            target.textContent = currentVal;
+                        }
+                    }, 20);
+                    observer.unobserve(target); 
+                }
+            });
+        }, { threshold: 0.1 });
+
+        statCounters.forEach(counter => counterObserver.observe(counter));
+
+        // 7. REAL-TIME NAV CLOCK (GMT+6)
+        function updateNavClock() {
+            const clockEl = document.getElementById('nav-live-clock');
+            if (!clockEl) return;
+            
+            const now = new Date();
+            let options = {
+                timeZone: 'Asia/Dhaka',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            };
+            
+            const timeString = now.toLocaleTimeString('en-US', options);
+            clockEl.textContent = `${timeString} (GMT+6)`;
+        }
+        setInterval(updateNavClock, 1000);
+        updateNavClock();
+    </script>
 </body>
 </html>
